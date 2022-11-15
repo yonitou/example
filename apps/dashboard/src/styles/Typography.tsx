@@ -1,23 +1,16 @@
 import { createGlobalStyle } from "styled-components";
 
 import nunitoBoldWoff2 from "@Assets/fonts/Nunito-Bold.woff2";
-import nunitoBoldWoff from "@Assets/fonts/Nunito-Bold.woff";
-
 import nunitoRegularWoff2 from "@Assets/fonts/Nunito-Regular.woff2";
-import nunitoRegularWoff from "@Assets/fonts/Nunito-Regular.woff";
-
 import nunitoSemiBoldWoff2 from "@Assets/fonts/Nunito-SemiBold.woff2";
-import nunitoSemiBoldWoff from "@Assets/fonts/Nunito-SemiBold.woff";
-
 import avenirBlackWoff2 from "@Assets/fonts/Avenir-Black.woff2";
-import avenirBlackWoff from "@Assets/fonts/Avenir-Black.woff";
 
 const styled = { createGlobalStyle };
 
 const Typography = styled.createGlobalStyle`
 	@font-face {
 		font-family: "Nunito Bold";
-		src: url(${nunitoBoldWoff2}) format("woff2"), url(${nunitoBoldWoff}) format("woff");
+		src: url(${nunitoBoldWoff2}) format("woff2");
 		font-weight: normal;
 		font-style: normal;
 		font-display: swap;
@@ -25,7 +18,7 @@ const Typography = styled.createGlobalStyle`
 
 	@font-face {
 		font-family: "Nunito Regular";
-		src: url(${nunitoRegularWoff2}) format("woff2"), url(${nunitoRegularWoff}) format("woff");
+		src: url(${nunitoRegularWoff2}) format("woff2");
 		font-weight: normal;
 		font-style: normal;
 		font-display: swap;
@@ -33,7 +26,7 @@ const Typography = styled.createGlobalStyle`
 
 	@font-face {
 		font-family: "Nunito SemiBold";
-		src: url(${nunitoSemiBoldWoff2}) format("woff2"), url(${nunitoSemiBoldWoff}) format("woff");
+		src: url(${nunitoSemiBoldWoff2}) format("woff2");
 		font-weight: normal;
 		font-style: normal;
 		font-display: swap;
@@ -41,7 +34,7 @@ const Typography = styled.createGlobalStyle`
 
 	@font-face {
 		font-family: "Avenir Black";
-		src: url(${avenirBlackWoff2}) format("woff2"), url(${avenirBlackWoff}) format("woff");
+		src: url(${avenirBlackWoff2}) format("woff2");
 		font-weight: normal;
 		font-style: normal;
 		font-display: swap;

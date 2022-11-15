@@ -1,4 +1,5 @@
 const getWebpackConfig = require("@nrwl/react/plugins/webpack");
+const path = require("path");
 
 module.exports = (webpackConfig) => {
 	const config = getWebpackConfig(webpackConfig);
@@ -7,7 +8,10 @@ module.exports = (webpackConfig) => {
 		...config,
 		output: {
 			...config.output,
-			assetModuleFilename: "assets/[name][ext]",
+			assetModuleFilename: (pathData) => {
+				const filepath = path.dirname(pathData.filename).split("/").slice(1).join("/");
+				return `${filepath}/[name].[hash][ext][query]`;
+			},
 		},
 		module: {
 			...config.module,
@@ -16,9 +20,6 @@ module.exports = (webpackConfig) => {
 				{
 					test: /\.(woff(2)?|ttf|eot)$/,
 					type: "asset/resource",
-					generator: {
-						filename: "./assets/fonts/[name][ext]",
-					},
 				},
 			],
 		},
