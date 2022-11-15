@@ -11,9 +11,7 @@ variables:
     VERSION: "2.6.5"
 
 stages:
-#    - check-lint
     - build
-#    - deploy
 
 .distributed:
   image: node:16
