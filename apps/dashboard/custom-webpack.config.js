@@ -7,19 +7,17 @@ module.exports = (webpackConfig) => {
 		...config,
 		output: {
 			...config.output,
-			assetModuleFilename: "assets/[name][ext]",
 		},
 		module: {
 			...config.module,
 			rules: [
 				...config.module.rules,
 				{
-					test: /\.(woff|woff2|eot|ttf|otf)$/i,
+					test: /\.(woff(2)?|ttf|eot)$/,
 					type: "asset/resource",
-				},
-				{
-					test: /\.(png|svg|jpg|jpeg|gif)$/i,
-					type: "asset/resource",
+					generator: {
+						filename: "./fonts/[name][ext]",
+					},
 				},
 			],
 		},
