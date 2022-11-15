@@ -59,6 +59,8 @@ build_develop:
     artifacts:
         paths:
             - ./build
+    only:
+        - nx-config # TODO REMOVE
 
 # build_release:
 #     image: node:16
