@@ -1,0 +1,118 @@
+# Cache node modules - speeds up future builds
+cache:
+    paths:
+        - node_modules
+
+variables:
+    S3_BUCKET_PROD: ${BUCKET_PROD}
+    S3_BUCKET_DEV: ${BUCKET_DEV}
+    DISTR_ID_TEST: ${CLOUDFRONT_DISTRIBUTION_ID_TEST}
+    DISTR_ID_PROD: ${CLOUDFRONT_DISTRIBUTION_ID_PROD}
+    VERSION: "2.6.5"
+
+stages:
+    - test
+    - build
+#    - deploy
+
+.distributed:
+  interruptible: true
+  only:
+    - nx-config
+#    - main
+#    - develop
+#    - merge_requests
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  before_script:
+    - npm ci --cache .npm --prefer-offline
+    - NX_HEAD=$CI_COMMIT_SHA
+    - NX_BASE=${CI_MERGE_REQUEST_DIFF_BASE_SHA:-$CI_COMMIT_BEFORE_SHA}
+  artifacts:
+    paths:
+      - node_modules/.cache/nx
+
+dashboard-tsc:
+  stage: test
+  extends: .distributed
+  script:
+    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=tsc --parallel=3
+
+dashboard-prune:
+  stage: test
+  extends: .distributed
+  script:
+    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=ts-prune --parallel=3
+
+lint:
+  stage: test
+  extends: .distributed
+  script:
+    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=lint --parallel=3
+
+# test:
+#   stage: test
+#   extends: .distributed
+#   script:
+#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=test --parallel=3 --ci --code-coverage
+
+build_develop:
+    stage: build
+    extends: .distributed
+    before_script:
+        - export NX_REACT_APP_VERSION=${VERSION}
+        - export NX_SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
+        - export NX_REACT_APP_GOOGLE_API=${GOOGLE_MAPS_API}
+    script:
+        - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=build --parallel=3
+    artifacts:
+        paths:
+            - ./build
+    only:
+        - nx-config # TODO REMOVE
+
+# build_release:
+#     image: node:16
+#     stage: build
+#     before_script:
+#         - export REACT_APP_VERSION=${VERSION}
+#         - export SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
+#         - export REACT_APP_GOOGLE_API=${GOOGLE_MAPS_API}
+#     script:
+#         - npm install --legacy-peer-deps # Install all dependencies
+#         - npm run build:prod # Build command
+#     artifacts:
+#         paths:
+#             - ./build
+#     only:
+#         - release
+
+# deploy_develop:
+#     image: python:latest
+#     stage: deploy
+#     before_script:
+#         - export S3_BUCKET=${S3_BUCKET_DEV}
+#         - export DISTR_ID=${DISTR_ID_TEST}
+#     script:
+#         - pip install awscli #Install awscli tools
+#         - aws s3 sync ./build/ s3://${S3_BUCKET}
+#         - aws cloudfront create-invalidation --distribution-id ${DISTR_ID} --paths "/*"
+#     only:
+#         - develop
+
+# deploy_release:
+#     image: python:latest
+#     stage: deploy
+#     before_script:
+#         - export S3_BUCKET=${S3_BUCKET_PROD}
+#         - export DISTR_ID=${DISTR_ID_PROD}
+#     script:
+#         - pip install awscli #Install awscli tools
+#         - aws s3 sync ./build/ s3://${S3_BUCKET}
+#         - aws cloudfront create-invalidation --distribution-id ${DISTR_ID} --paths "/*"
+#     only:
+#         - release
