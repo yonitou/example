@@ -16,6 +16,7 @@ stages:
 #    - deploy
 
 .distributed:
+  image: node:16
   interruptible: true
   only:
     - nx-config
