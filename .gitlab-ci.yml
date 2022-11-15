@@ -11,6 +11,7 @@ variables:
     VERSION: "2.6.5"
 
 stages:
+    # - check-lint
     - build
 #    - deploy
 
@@ -36,13 +37,13 @@ stages:
     paths:
       - node_modules/.cache/nx
 
-lint:
-  stage: check-lint
-  extends: .distributed
-  script:
-    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=tsc --parallel=3
-    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=ts-prune --parallel=3
-    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=lint --parallel=3
+# lint:
+#   stage: check-lint
+#   extends: .distributed
+#   script:
+#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=tsc --parallel=3
+#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=ts-prune --parallel=3
+#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=lint --parallel=3
 
 
 build_develop:
