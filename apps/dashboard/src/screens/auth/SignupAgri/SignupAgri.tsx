@@ -38,7 +38,7 @@ const SignupAgri = ({
 						backIcon={<BaseIcons.ArrowLeft />}
 						onGoBack={activeStep === 0 ? onGoBack : goPreviousStep}
 					/>
-					{/* eslint-disable-next-line */}
+
 					<FormProvider {...methods}>
 						<form
 							onSubmit={methods.handleSubmit((values: formValuesType) =>

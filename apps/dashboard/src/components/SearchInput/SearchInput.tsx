@@ -17,7 +17,6 @@ const SearchInput = ({ name, onCustomChange }: SearchInputProps): JSX.Element =>
 	const methods = useForm();
 
 	return (
-		// eslint-disable-next-line
 		<FormProvider {...methods}>
 			<StyledSearchInput
 				name={name}

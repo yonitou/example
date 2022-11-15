@@ -101,7 +101,7 @@ const EditSingleField = ({ selectedField, onRequestUpdate, onRequestDelete }: Ed
 	return (
 		<StyledEditSingleField>
 			<BaseIcons.Close width={24} height={24} onClick={resetSelection} className="cross" />
-			{/* eslint-disable-next-line */}
+
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onClickActionEditSave)}>
 					<div className="input-wrapper inline">

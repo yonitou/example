@@ -31,8 +31,6 @@ const sleep = (ms: number): Promise<unknown> =>
 		setTimeout(resolve, ms);
 	});
 
-/* eslint-disable no-await-in-loop */
-
 const waitForImportToFinish = async (farmId: number, queueId: number): Promise<unknown> => {
 	for (let index = 0; index < 90; index += 1) {
 		await sleep(1000);
@@ -42,7 +40,6 @@ const waitForImportToFinish = async (farmId: number, queueId: number): Promise<u
 	}
 	throw Error("Timeout : Le serveur est trop lent à répondre");
 };
-/* eslint-enable no-await-in-loop */
 
 export const sendFileToS3AndWaitForImportToFinish = async ({
 	farmId,

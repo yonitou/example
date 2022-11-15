@@ -122,7 +122,7 @@ const Account = ({
 					)}
 					<section>
 						<h3 className="labels">{t("screens.account.myDetails.title")}</h3>
-						{/* eslint-disable-next-line */}
+
 						<FormProvider {...methods}>
 							<div className="input-wrapper">
 								<Controller

@@ -10,7 +10,6 @@ const ValueContainer = ({ children, ...props }: ValueContainerProps): JSX.Elemen
 		(c) => c.id.toString() === (props.getValue()?.[0] as { value: string; label: string })?.value
 	);
 	return (
-		// eslint-disable-next-line
 		<components.ValueContainer {...props}>
 			<CropIcon crop={crop} fill={COLORS.NIGHT[100]} /> {children}
 		</components.ValueContainer>

@@ -59,8 +59,6 @@ const DeviceDeleteModal = ({ device, modalVisible, hideModal }: DeviceDeleteModa
 			colorConfirmBtn="gaspacho"
 			sideBySideButtons
 		>
-			{/* eslint-disable-next-line */}
-
 			<StyledModal>
 				<BaseIcons.FilledSensor width={40} height={40} />
 				<div className="details">

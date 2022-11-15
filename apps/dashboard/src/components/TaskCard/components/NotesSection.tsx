@@ -35,7 +35,7 @@ const NotesSection = ({ notes }: NotesSectionProps): JSX.Element => {
 				<BaseIcons.Pencil width={24} height={24} fill={COLORS.LAKE[100]} />
 				<h3>{t("components.taskCard.notesSection.title")}</h3>
 			</div>
-			{/* eslint-disable-next-line */}
+
 			<FormProvider {...methods}>
 				<div className="notes">
 					<TextInput

@@ -125,7 +125,7 @@ const CropsListCard = (): JSX.Element => {
 						<BaseIcons.RecycleCrop width={24} height={24} fill={COLORS.NIGHT[100]} />{" "}
 						{t("screens.dashboard.cropsListCard.selectedFields", { count: selectedFields?.length })}
 					</h5>
-					{/* eslint-disable-next-line */}
+
 					<SearchInput onCustomChange={search} name="crop" />
 				</div>
 				<div className="crops-wrapper">

@@ -89,7 +89,6 @@ const NewFieldsList = ({
 							key={key}
 							className="accordion"
 						>
-							{/* eslint-disable-next-line */}
 							<FormProvider {...methods}>
 								<TextInput
 									name="crop"

@@ -62,7 +62,12 @@ const SmagLoginModal = ({ modalVisible, hideModal }: SmagLoginModalPropsType): J
 							You will be able to communicate directly between your HYGO tasks and your Smag Farmer
 							Account
 						</h5>
-						<h3>🤔 How will it work ?</h3>
+						<h3>
+							<span role="img" aria-label="Pourquoi">
+								🤔
+							</span>
+							How will it work ?
+						</h3>
 						<h5>
 							We&apos;ll ask you to login with your smag credentials to link your account. We&apos;ll then
 							invite you to import your Smag fields in HYGO
@@ -72,7 +77,12 @@ const SmagLoginModal = ({ modalVisible, hideModal }: SmagLoginModalPropsType): J
 
 				<InputTip>
 					<Trans i18nKey="modals.smagLogin.inputTip">
-						<h5 className="night">💡 Why is it important to import my Smag fields ?</h5>
+						<h5 className="night">
+							<span role="img" aria-label="Ampoule">
+								💡
+							</span>{" "}
+							Why is it important to import my Smag fields ?
+						</h5>
 						<h5>
 							This will enable us to make the link between each field to show you the corresponding tasks.
 						</h5>

@@ -8,7 +8,6 @@ const Option = ({ label, data, ...props }: OptionProps): JSX.Element => {
 	const { crops } = useContext(UserContext);
 	const crop = crops.find((c) => c.id.toString() === (data as { value: string; label: string })?.value);
 	return (
-		// eslint-disable-next-line
 		<components.Option {...props} label={label} data={data}>
 			<CropIcon crop={crop} fill={COLORS.NIGHT[100]} />
 			{label}

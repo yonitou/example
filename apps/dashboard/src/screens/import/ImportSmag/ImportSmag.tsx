@@ -128,9 +128,17 @@ const ImportSmag = ({
 												{!loadingSmagFarms && selectedYear && (
 													<InputTip>
 														<Trans i18nKey="screens.importSmag.steps.2.errors">
-															<h5>⚠️ No farm has been found for this season.</h5>
 															<h5>
-																👉 Check your Smag account. If a farm exists on this
+																<span role="img" aria-label="Attention">
+																	⚠️
+																</span>
+																No farm has been found for this season.
+															</h5>
+															<h5>
+																<span role="img" aria-label="Infos">
+																	👉
+																</span>
+																Check your Smag account. If a farm exists on this
 																season, contact us.
 															</h5>
 														</Trans>

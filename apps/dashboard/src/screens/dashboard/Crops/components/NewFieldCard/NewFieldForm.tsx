@@ -136,7 +136,6 @@ const NewFieldForm = ({
 	return (
 		<StyledNewFieldForm>
 			<div className="form-wrapper">
-				{/* eslint-disable-next-line */}
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(onSave)} autoComplete="off">
 						<div className="input-wrapper row">

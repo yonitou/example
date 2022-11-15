@@ -67,7 +67,6 @@ const DeviceUpdateModal = ({ device, modalVisible, hideModal }: DeviceUpdateModa
 			colorConfirmBtn="tangerine"
 			sideBySideButtons
 		>
-			{/* eslint-disable-next-line */}
 			<FormProvider {...methods}>
 				<StyledModal>
 					<div className="input-wrapper">

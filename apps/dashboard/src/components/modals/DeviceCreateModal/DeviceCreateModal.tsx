@@ -61,7 +61,6 @@ const DeviceCreateModal = ({ modalVisible, hideModal }: DeviceCreateModalPropsTy
 			colorConfirmBtn="tangerine"
 			sideBySideButtons
 		>
-			{/* eslint-disable-next-line */}
 			<FormProvider {...methods}>
 				<StyledModal>
 					<div className="input-wrapper">

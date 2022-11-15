@@ -74,7 +74,6 @@ const ImportDropzone = ({ onChange, file, className }: ImportDropzoneProps): JSX
 	};
 
 	return (
-		/* eslint-disable react/jsx-props-no-spreading */
 		<StyledDropzoneWrapper {...getRootProps({ style: { outline: "none" } })} className={className}>
 			<div>
 				<input {...getInputProps()} />

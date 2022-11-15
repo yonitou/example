@@ -49,7 +49,6 @@ const ResetPassword = ({ loading, onSubmit, methods, passwordUpdated, onGoBack }
 				{loading && <BaseLoader />}
 				{!loading && !passwordUpdated && (
 					<StyledWrapper>
-						{/* eslint-disable-next-line */}
 						<FormProvider {...methods}>
 							<form onSubmit={methods.handleSubmit(onSubmit)}>
 								<div className="input-wrapper">

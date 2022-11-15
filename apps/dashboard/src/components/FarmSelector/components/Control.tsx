@@ -16,7 +16,6 @@ const Control = (props: ControlProps): JSX.Element => {
 
 	return (
 		<div onClick={onClick} tabIndex={0} role="button" onKeyDown={onClick}>
-			{/* eslint-disable-next-line */}
 			<components.Control {...props} />
 		</div>
 	);

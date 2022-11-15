@@ -19,7 +19,6 @@ const MenuList = (props: CustomMenuListProps): JSX.Element => {
 	const { children, withAddButton } = props;
 
 	return (
-		// eslint-disable-next-line
 		<components.MenuList {...props}>
 			{children}
 			{withAddButton && (

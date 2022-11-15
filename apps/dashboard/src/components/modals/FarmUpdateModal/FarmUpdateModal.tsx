@@ -42,7 +42,6 @@ const FarmUpdateModal = ({ modalVisible, hideModal }: FarmUpdateModalPropsType):
 			colorConfirmBtn="tangerine"
 			sideBySideButtons
 		>
-			{/* eslint-disable-next-line */}
 			<FormProvider {...methods}>
 				<div className="input-wrapper">
 					<TextInput

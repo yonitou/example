@@ -17,6 +17,7 @@ interface useChargebeeReturnType {
 const useChargebee = (): useChargebeeReturnType => {
 	const navigate = useNavigate();
 	const { user, setIsAuth, signout, signin } = useContext(AuthContext);
+
 	// eslint-disable-next-line
 	const [chargebee, setChargebee] = useState<any>();
 

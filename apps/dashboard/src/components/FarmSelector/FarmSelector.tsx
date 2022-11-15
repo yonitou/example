@@ -116,10 +116,7 @@ const FarmSelector = ({ crudActions, disabled = false }: FarmSelectorProps): JSX
 	};
 
 	const MemoizedMenuList = useCallback((withAddButton: boolean, menuListProps: MenuListProps): JSX.Element => {
-		return (
-			// eslint-disable-next-line
-			<MenuList {...menuListProps} withAddButton={withAddButton} />
-		);
+		return <MenuList {...menuListProps} withAddButton={withAddButton} />;
 	}, []);
 
 	return (

@@ -82,7 +82,6 @@ const AccountDeleteModal = ({ modalVisible, hideModal }: AccountDeleteModalProps
 						<>To confirm, enter &quot;{{ randomCropName }}&quot;</>
 					</h4>
 				</Trans>
-				{/* eslint-disable-next-line */}
 				<FormProvider {...methods}>
 					<TextInput
 						name="cropName"

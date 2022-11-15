@@ -130,7 +130,7 @@ const SelectInput = ({
 				components={{
 					...components,
 					IndicatorSeparator: () => null,
-					// eslint-disable-next-line
+
 					Input: (props: InputProps) => <nativeSelectComponents.Input {...props} autoComplete="off" />,
 				}}
 				openMenuOnClick={openMenuOnClick}

@@ -46,7 +46,6 @@ const EmailPasswordValidation = ({
 				{loading && <BaseLoader />}
 				{!loading && !emailSent && (
 					<StyledWrapper>
-						{/* eslint-disable-next-line */}
 						<FormProvider {...methods}>
 							<form onSubmit={methods.handleSubmit(onSubmit)}>
 								<div className="input-wrapper">

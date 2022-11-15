@@ -60,7 +60,6 @@ const SignIn = ({ loading, onSubmit, methods, onClickSignUp }: SigninProps): JSX
 					{loading ? (
 						<BaseLoader />
 					) : (
-						// eslint-disable-next-line
 						<FormProvider {...methods}>
 							<form onSubmit={methods.handleSubmit(onSubmit)}>
 								<div className="input-wrapper">
