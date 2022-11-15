@@ -12,11 +12,16 @@
 			"options": {
 				"compiler": "babel",
 				"outputPath": "dist/apps/dashboard",
-				"index": "apps/dashboard/public/index.html",
+				"index": "apps/dashboard/src/index.html",
 				"baseHref": "/",
 				"main": "apps/dashboard/src/index.tsx",
 				"tsConfig": "apps/dashboard/tsconfig.app.json",
-				"assets": ["apps/dashboard/src/assets/favicon.ico", "apps/dashboard/src/assets"],
+				"assets": [
+					"apps/dashboard/src/favicon.ico",
+					"apps/dashboard/src/assets",
+					"apps/dashboard/src/.well-known",
+					"apps/dashboard/src/robots.txt"
+				],
 				"styles": [],
 				"scripts": [],
 				"webpackConfig": "apps/dashboard/custom-webpack.config.js"
