@@ -1,26 +1,16 @@
 const getWebpackConfig = require("@nrwl/react/plugins/webpack");
+const { merge } = require("webpack-merge");
 
-module.exports = (webpackConfig) => {
-	const config = getWebpackConfig(webpackConfig);
-	console.log(config.module.rules);
-	return {
-		...config,
-		output: {
-			...config.output,
-			assetModuleFilename: "assets/[hash][ext]",
-		},
+module.exports = (config, context) => {
+	const newConfig = getWebpackConfig(config);
+	return merge(newConfig, {
 		module: {
-			...config.module,
 			rules: [
-				...config.module.rules,
 				{
 					test: /\.(woff(2)?|ttf|eot)$/,
 					type: "asset/resource",
-					generator: {
-						filename: "./assets/fonts/[name][ext]",
-					},
 				},
 			],
 		},
-	};
+	});
 };
