@@ -1,0 +1,18 @@
+{
+	"env": {
+		"browser": true
+	},
+
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+			"parserOptions": {
+				"project": ["apps/dashboard/tsconfig.*?.json"]
+			},
+			"extends": ["plugin:react/recommended"],
+			"rules": {
+				"no-inline-styles/no-inline-styles": 2
+			}
+		}
+	]
+}

@@ -1,4 +1,28 @@
-# Add files here to ignore them from prettier formatting
+*.yml
+node_modules
+assets
+*.html
+*.css
+build
+# dependencies
+/.pnp
+.pnp.js
 
-/dist
-/coverage
+# tatics assets
+/public
+
+# testing
+coverage
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+# Vs code config
+/.vscode
+.eslintcache
+npm-debug.log*
+*.sketch
+.env
