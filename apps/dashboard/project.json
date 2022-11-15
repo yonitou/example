@@ -8,7 +8,7 @@
 		"build": {
 			"executor": "@nrwl/webpack:webpack",
 			"outputs": ["{options.outputPath}"],
-			"defaultConfiguration": "production",
+			"defaultConfiguration": "staging",
 			"options": {
 				"compiler": "babel",
 				"outputPath": "dist/apps/dashboard",
@@ -22,8 +22,6 @@
 					"apps/dashboard/src/.well-known",
 					"apps/dashboard/src/robots.txt"
 				],
-				"styles": [],
-				"scripts": [],
 				"webpackConfig": "apps/dashboard/custom-webpack.config.js"
 			},
 			"configurations": {
@@ -36,7 +34,7 @@
 				"staging": {
 					"optimization": true,
 					"outputHashing": "all",
-					"sourceMap": false,
+					"sourceMap": "hidden",
 					"namedChunks": false,
 					"extractLicenses": true,
 					"vendorChunk": false
@@ -44,7 +42,7 @@
 				"production": {
 					"optimization": true,
 					"outputHashing": "all",
-					"sourceMap": false,
+					"sourceMap": "hidden",
 					"namedChunks": false,
 					"extractLicenses": true,
 					"vendorChunk": false
