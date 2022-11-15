@@ -35,6 +35,5 @@
 			"@Utils/*": ["./src/utils/*"]
 		}
 	},
-	"include": ["src"],
 	"exclude": ["node_modules"]
 }
