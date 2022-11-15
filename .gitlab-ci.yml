@@ -11,7 +11,7 @@ variables:
     VERSION: "2.6.5"
 
 stages:
-    - test
+    - check-lint
     - build
 #    - deploy
 
@@ -37,29 +37,14 @@ stages:
     paths:
       - node_modules/.cache/nx
 
-dashboard-tsc:
-  stage: test
+lint:
+  stage: check-lint
   extends: .distributed
   script:
     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=tsc --parallel=3
-
-dashboard-prune:
-  stage: test
-  extends: .distributed
-  script:
     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=ts-prune --parallel=3
-
-lint:
-  stage: test
-  extends: .distributed
-  script:
     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=lint --parallel=3
 
-# test:
-#   stage: test
-#   extends: .distributed
-#   script:
-#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=test --parallel=3 --ci --code-coverage
 
 build_develop:
     stage: build
@@ -68,8 +53,9 @@ build_develop:
         - export NX_REACT_APP_VERSION=${VERSION}
         - export NX_SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
         - export NX_REACT_APP_GOOGLE_API=${GOOGLE_MAPS_API}
+        - export NX_REACT_APP_ENV="staging"
     script:
-        - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=build --parallel=3
+        - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=build --parallel=3 --configuration=staging
     artifacts:
         paths:
             - ./build
