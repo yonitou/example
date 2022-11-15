@@ -5,17 +5,21 @@ module.exports = (webpackConfig) => {
 
 	return {
 		...config,
+		output: {
+			...config.output,
+			assetModuleFilename: "assets/[name][ext]",
+		},
 		module: {
 			...config.module,
 			rules: [
 				...config.module.rules,
 				{
-					test: /\.svg$/,
-					use: "url-loader",
+					test: /\.(woff|woff2|eot|ttf|otf)$/i,
+					type: "asset/resource",
 				},
 				{
-					test: /\.(woff|woff2|eot|ttf|otf)$/,
-					loader: "file-loader",
+					test: /\.(png|svg|jpg|jpeg|gif)$/i,
+					type: "asset/resource",
 				},
 			],
 		},
