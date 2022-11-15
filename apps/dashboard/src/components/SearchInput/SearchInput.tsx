@@ -21,7 +21,8 @@ const SearchInput = ({ name, onCustomChange }: SearchInputProps): JSX.Element =>
 			<StyledSearchInput
 				name={name}
 				onCustomChange={onCustomChange}
-				placeholder={t("components.searchInput.placeholder")}
+				placeholder={t("components.searchInput.placeholderr")}
+				// TODO remove rr
 				placeholderIcon={<BaseIcons.MagnifyingGlass width={24} height={24} fill={COLORS.NIGHT[50]} />}
 			/>
 		</FormProvider>
