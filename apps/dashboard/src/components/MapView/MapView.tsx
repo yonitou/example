@@ -52,7 +52,7 @@ const MapView = (): JSX.Element => {
 	const drawingEnabled = currentMode === ModeEnum.NEW_FIELD || currentMode === ModeEnum.UPDATE_FIELD;
 
 	const { isLoaded, loadError } = useJsApiLoader({
-		googleMapsApiKey: process.env.REACT_APP_GOOGLE_API,
+		googleMapsApiKey: process.env.NX_REACT_APP_GOOGLE_API,
 		libraries: mapLibs as ("drawing" | "geometry" | "localContext" | "places" | "visualization")[],
 		language: i18next.language,
 	});

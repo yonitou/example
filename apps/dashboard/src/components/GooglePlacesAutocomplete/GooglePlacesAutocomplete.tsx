@@ -26,7 +26,7 @@ const GooglePlacesAutocompleteComponent = ({
 	const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete>();
 
 	const { isLoaded } = useJsApiLoader({
-		googleMapsApiKey: process.env.REACT_APP_GOOGLE_API,
+		googleMapsApiKey: process.env.NX_REACT_APP_GOOGLE_API,
 		libraries: mapLibs as ("drawing" | "geometry" | "localContext" | "places" | "visualization")[],
 		language: i18next.language,
 	});

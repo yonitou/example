@@ -3,5 +3,93 @@
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "apps/dashboard/src",
 	"projectType": "application",
-	"tags": []
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@nrwl/webpack:webpack",
+			"outputs": ["{options.outputPath}"],
+			"defaultConfiguration": "production",
+			"options": {
+				"compiler": "babel",
+				"outputPath": "dist/apps/dashboard",
+				"index": "apps/dashboard/public/index.html",
+				"baseHref": "/",
+				"main": "apps/dashboard/src/index.tsx",
+				"tsConfig": "apps/dashboard/tsconfig.app.json",
+				"assets": ["apps/dashboard/src/assets/favicon.ico", "apps/dashboard/src/assets"],
+				"styles": [],
+				"scripts": [],
+				"webpackConfig": "apps/dashboard/custom-webpack.config.js"
+			},
+			"configurations": {
+				"development": {
+					"extractLicenses": false,
+					"optimization": false,
+					"sourceMap": true,
+					"vendorChunk": true
+				},
+				"production": {
+					"optimization": true,
+					"outputHashing": "all",
+					"sourceMap": false,
+					"namedChunks": false,
+					"extractLicenses": true,
+					"vendorChunk": false
+				}
+			}
+		},
+		"tsc": {
+			"executor": "nx:run-commands",
+			"options": {
+				"commands": [
+					{
+						"command": "tsc --noEmit -p apps/dashboard/tsconfig.app.json"
+					}
+				]
+			}
+		},
+		"ts-prune": {
+			"executor": "nx:run-commands",
+			"options": {
+				"commands": [
+					{
+						"command": "ts-prune -e -p apps/dashboard/tsconfig.app.json"
+					}
+				]
+			}
+		},
+		"serve": {
+			"executor": "@nrwl/webpack:dev-server",
+			"defaultConfiguration": "development",
+			"options": {
+				"buildTarget": "dashboard:build",
+				"hmr": true,
+				"port": 3000
+			},
+			"configurations": {
+				"development": {
+					"buildTarget": "dashboard:build:development"
+				},
+				"production": {
+					"buildTarget": "dashboard:build:production",
+					"hmr": false
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["apps/dashboard/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "apps/dashboard/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
 }

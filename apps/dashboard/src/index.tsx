@@ -8,8 +8,8 @@ Sentry.init({
 	dsn: "https://7594a658fc134c94811bbebc8722b309@o1077021.ingest.sentry.io/6274711",
 	integrations: [new BrowserTracing()],
 	tracesSampleRate: 0.3,
-	environment: process.env.REACT_APP_ENV,
-	enabled: process.env.REACT_APP_ENV === "staging" || process.env.REACT_APP_ENV === "production",
+	environment: process.env.NX_REACT_APP_ENV,
+	enabled: process.env.NX_REACT_APP_ENV === "staging" || process.env.NX_REACT_APP_ENV === "production",
 });
 
 const container = document.getElementById("root");

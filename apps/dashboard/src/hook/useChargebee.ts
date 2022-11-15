@@ -42,7 +42,7 @@ const useChargebee = (): useChargebeeReturnType => {
 		script.async = true;
 		script.onload = () => {
 			window.Chargebee.init({
-				site: process.env.REACT_APP_ENV === "production" ? "alvie" : "alvie-test",
+				site: process.env.NX_REACT_APP_ENV === "production" ? "alvie" : "alvie-test",
 			});
 			window.Chargebee.registerAgain();
 			const cbInstance = window.Chargebee.getInstance();

@@ -19,8 +19,10 @@ const baseURLs = {
 	local: "http://localhost:3000",
 };
 
+console.log(process.env);
+
 const api = axios.create({
-	baseURL: baseURLs[process.env.REACT_APP_ENV as "production" | "dev" | "local" | "staging"],
+	baseURL: baseURLs[process.env.NX_REACT_APP_ENV as "production" | "dev" | "local" | "staging"],
 	timeout: 30000,
 
 	headers: {
