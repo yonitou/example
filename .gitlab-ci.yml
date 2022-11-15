@@ -12,6 +12,7 @@ variables:
 
 stages:
     - build
+#    - deploy
 
 .distributed:
   image: node:16
