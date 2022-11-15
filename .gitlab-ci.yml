@@ -50,6 +50,9 @@ build_develop:
     stage: build
     extends: .distributed
     before_script:
+        - npm ci --cache .npm --prefer-offline --legacy-peer-deps
+        - NX_HEAD=$CI_COMMIT_SHA
+        - NX_BASE=${CI_MERGE_REQUEST_DIFF_BASE_SHA:-$CI_COMMIT_BEFORE_SHA}
         - export NX_REACT_APP_VERSION=${VERSION}
         - export NX_SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
         - export NX_REACT_APP_GOOGLE_API=${GOOGLE_MAPS_API}
