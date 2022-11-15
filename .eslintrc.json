@@ -34,10 +34,7 @@
 				],
 				"react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
 				"import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-				"@typescript-eslint/explicit-function-return-type": [
-					"error",
-					{ "allowExpressions": true }
-				],
+				"@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }],
 				"react/function-component-definition": [
 					2,
 					{
