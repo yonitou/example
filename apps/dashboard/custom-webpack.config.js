@@ -20,6 +20,9 @@ module.exports = (webpackConfig) => {
 				{
 					test: /\.(woff(2)?|ttf|eot)$/,
 					type: "asset/resource",
+					generator: {
+						filename: "./assets/fonts/[name][ext]",
+					},
 				},
 			],
 		},
