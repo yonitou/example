@@ -11,7 +11,7 @@ variables:
     VERSION: "2.6.5"
 
 stages:
-    - build
+  - build
 #    - deploy
 
 .distributed:
