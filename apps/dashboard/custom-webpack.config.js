@@ -24,6 +24,10 @@ module.exports = (webpackConfig) => {
 						filename: "./assets/fonts/[name][ext]",
 					},
 				},
+				{
+					test: /\.(png|jpg|svg|gif)/,
+					type: "asset/resource",
+				},
 			],
 		},
 	};
