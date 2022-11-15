@@ -7,6 +7,7 @@ module.exports = (webpackConfig) => {
 		...config,
 		output: {
 			...config.output,
+			assetModuleFilename: "assets/[name][ext]",
 		},
 		module: {
 			...config.module,
