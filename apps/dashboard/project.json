@@ -18,7 +18,6 @@
 				"tsConfig": "apps/dashboard/tsconfig.app.json",
 				"assets": [
 					"apps/dashboard/src/favicon.ico",
-					"apps/dashboard/src/assets",
 					"apps/dashboard/src/.well-known",
 					"apps/dashboard/src/robots.txt"
 				],
