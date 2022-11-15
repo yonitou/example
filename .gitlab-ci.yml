@@ -61,7 +61,7 @@ build_develop:
         - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=build --parallel=3 --configuration=staging
     artifacts:
         paths:
-            - ./build
+            - ./dist/apps/dashboard
 
 # build_release:
 #     image: node:16
