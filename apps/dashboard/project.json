@@ -73,12 +73,12 @@
 			"defaultConfiguration": "development",
 			"options": {
 				"buildTarget": "dashboard:build",
-				"hmr": true,
-				"port": 3000
+				"hmr": true
 			},
 			"configurations": {
 				"development": {
-					"buildTarget": "dashboard:build:development"
+					"buildTarget": "dashboard:build:development",
+					"port": 3000
 				},
 				"staging": {
 					"buildTarget": "dashboard:build:staging",
@@ -95,14 +95,6 @@
 			"outputs": ["{options.outputFile}"],
 			"options": {
 				"lintFilePatterns": ["apps/dashboard/**/*.{ts,tsx,js,jsx}"]
-			}
-		},
-		"test": {
-			"executor": "@nrwl/jest:jest",
-			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-			"options": {
-				"jestConfig": "apps/dashboard/jest.config.ts",
-				"passWithNoTests": true
 			}
 		}
 	}

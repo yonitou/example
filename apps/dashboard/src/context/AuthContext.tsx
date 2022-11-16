@@ -30,8 +30,10 @@ const AuthProvider = ({ children }: { children: JSX.Element | JSX.Element[] }): 
 	const [superAdmin, setSuperAdmin] = useState<boolean>(false);
 
 	const loading = isAuth === null;
+
 	const farmerSelected = !!user?.userId;
 	const planId = user?.plan?.name;
+
 	const hasActivePlan = user?.plan?.status && user?.plan?.status !== planStatusEnum.CANCELLED;
 
 	const storeAuthCookie = (cookie: string): void => {

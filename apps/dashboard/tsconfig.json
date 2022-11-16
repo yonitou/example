@@ -1,23 +1,7 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"target": "ESNext",
-		"lib": ["dom", "dom.iterable", "esnext"],
-		"allowJs": true,
-		"skipLibCheck": true,
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-		"strict": false,
-		"forceConsistentCasingInFileNames": true,
-		"noFallthroughCasesInSwitch": true,
-		"module": "esnext",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"noImplicitAny": true,
-		"noEmit": true,
 		"jsx": "react-jsx",
-		"typeRoots": ["./node_modules/@types", "./src/image.d.ts", "googlemaps"],
 		"baseUrl": ".",
 		"paths": {
 			"@Components/*": ["./src/components/*"],
@@ -34,6 +18,5 @@
 			"@Types/*": ["./src/types/*"],
 			"@Utils/*": ["./src/utils/*"]
 		}
-	},
-	"exclude": ["node_modules"]
+	}
 }
