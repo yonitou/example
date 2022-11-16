@@ -2,9 +2,8 @@ const getWebpackConfig = require("@nrwl/react/plugins/webpack");
 const { merge } = require("webpack-merge");
 const SentryCliPlugin = require("@sentry/webpack-plugin");
 
-module.exports = (config, context) => {
+module.exports = (config, _) => {
 	const newConfig = getWebpackConfig(config);
-	console.log(process.env.NX_REACT_APP_ENV);
 	return merge(newConfig, {
 		plugins: [
 			new SentryCliPlugin({
@@ -14,7 +13,7 @@ module.exports = (config, context) => {
 				project: "dashboard",
 				release: `${process.env.NX_REACT_APP_ENV} - ${process.env.NX_REACT_APP_VERSION}`,
 				include: ["dist/apps/dashboard"],
-				dryRun: process.env.NX_REACT_APP_ENV === "production" || process.env.NX_REACT_APP_ENV === "staging",
+				dryRun: process.env.NX_REACT_APP_ENV !== "production" && process.env.NX_REACT_APP_ENV !== "staging",
 				ignore: ["node_modules"],
 				urlPrefix: "dist/apps/dashboard",
 				rewrite: false,
