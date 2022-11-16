@@ -64,9 +64,6 @@ build_develop:
         - export NX_REACT_APP_ENV="staging"
     script:
         - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=build --parallel=3 --configuration=staging
-    artifacts:
-        paths:
-            - ./dist/apps/dashboard
     only:
       - develop
 
@@ -83,9 +80,6 @@ build_release:
         - export NX_REACT_APP_ENV="production"
     script:
         - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=build --parallel=3 --configuration=production
-    artifacts:
-        paths:
-            - ./dist/apps/dashboard
     only:
       - release
 
