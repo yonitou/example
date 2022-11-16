@@ -28,6 +28,7 @@ const GooglePlacesAutocompleteComponent = ({
 	const { isLoaded } = useJsApiLoader({
 		googleMapsApiKey: process.env.NX_GOOGLE_MAPS_API,
 		libraries: mapLibs as ("drawing" | "geometry" | "localContext" | "places" | "visualization")[],
+
 		language: i18next.language,
 	});
 
