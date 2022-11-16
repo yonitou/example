@@ -1,25 +1,22 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
-  },
-  "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
-  ]
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"baseUrl": ".",
+		"paths": {
+			"@Components/*": ["./src/components/*"],
+			"@Api/*": ["./src/api/*"],
+			"@Assets/*": ["./src/assets/*"],
+			"@Constants/*": ["./src/constants/*"],
+			"@Context/*": ["./src/context/*"],
+			"@Hook/*": ["./src/hook/*"],
+			"@I8n/*": ["./src/i18n/*"],
+			"@Icons/*": ["./src/icons/*"],
+			"@Router/*": ["./src/router/*"],
+			"@Screens/*": ["./src/screens/*"],
+			"@Styles/*": ["./src/styles/*"],
+			"@Types/*": ["./src/types/*"],
+			"@Utils/*": ["./src/utils/*"]
+		}
+	}
 }
