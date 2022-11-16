@@ -51,10 +51,10 @@ const Crops = ({ lastSelectedField, multiSelectionEnabled, currentMode }: CropsP
 	const { smagOnboardingStep, loggedInSmag } = useContext(OADContext);
 	const { farmerSelected, admin } = useContext(AuthContext);
 	const adminWithoutUserSelected = admin && !farmerSelected;
-
+	console.log(process.env);
 	return (
 		<StyledContainer>
-			{process.env.NX_REACT_APP_VERSION && <p className="version">HYGO v.{process.env.NX_REACT_APP_VERSION}</p>}
+			{process.env.NX_VERSION && <p className="version">HYGO v.{process.env.NX_VERSION}</p>}
 			<div className="map-container">
 				<MapView />
 				{currentMode === ModeEnum.FIELD_LIST && lastSelectedField && !multiSelectionEnabled && (

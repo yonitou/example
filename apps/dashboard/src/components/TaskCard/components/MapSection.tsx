@@ -36,7 +36,7 @@ const MapSection = ({ fields }: MapSectionProps): JSX.Element => {
 	);
 
 	const { isLoaded, loadError } = useJsApiLoader({
-		googleMapsApiKey: process.env.NX_REACT_APP_GOOGLE_API,
+		googleMapsApiKey: process.env.NX_GOOGLE_MAPS_API,
 		libraries: mapLibs as ("drawing" | "geometry" | "localContext" | "places" | "visualization")[],
 		language: i18next.language,
 	});

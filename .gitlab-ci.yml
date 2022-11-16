@@ -4,10 +4,12 @@ cache:
         - node_modules
 
 variables:
-    S3_BUCKET_PROD: ${BUCKET_PROD}
-    S3_BUCKET_DEV: ${BUCKET_DEV}
-    DISTR_ID_TEST: ${CLOUDFRONT_DISTRIBUTION_ID_TEST}
-    DISTR_ID_PROD: ${CLOUDFRONT_DISTRIBUTION_ID_PROD}
+    S3_BUCKET_PROD: ${NX_BUCKET_PROD}
+    S3_BUCKET_DEV: ${NX_BUCKET_DEV}
+    DISTR_ID_TEST: ${NX_CLOUDFRONT_DISTRIBUTION_ID_TEST}
+    DISTR_ID_PROD: ${NX_CLOUDFRONT_DISTRIBUTION_ID_PROD}
+    GOOGLE_MAPS_API: ${NX_GOOGLE_MAPS_API}
+    SENTRY_AUTH_TOKEN: ${NX_SENTRY_AUTH_TOKEN}
     VERSION: "2.7.0"
 
 stages:
@@ -58,10 +60,10 @@ build_develop:
         - npm ci --cache .npm --prefer-offline --legacy-peer-deps
         - NX_HEAD=$CI_COMMIT_SHA
         - NX_BASE=${CI_MERGE_REQUEST_DIFF_BASE_SHA:-$CI_COMMIT_BEFORE_SHA}
-        - export NX_REACT_APP_VERSION=${VERSION}
+        - export NX_VERSION=${VERSION}
         - export NX_SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
-        - export NX_REACT_APP_GOOGLE_API=${GOOGLE_MAPS_API}
-        - export NX_REACT_APP_ENV="staging"
+        - export NX_GOOGLE_MAPS_API=${GOOGLE_MAPS_API}
+        - export NX_ENV="staging"
     script:
         - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=build --parallel=3 --configuration=staging
     only:
@@ -78,10 +80,10 @@ build_release:
         - npm ci --cache .npm --prefer-offline --legacy-peer-deps
         - NX_HEAD=$CI_COMMIT_SHA
         - NX_BASE=${CI_MERGE_REQUEST_DIFF_BASE_SHA:-$CI_COMMIT_BEFORE_SHA}
-        - export NX_REACT_APP_VERSION=${VERSION}
+        - export NX_VERSION=${VERSION}
         - export NX_SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
-        - export NX_REACT_APP_GOOGLE_API=${GOOGLE_MAPS_API}
-        - export NX_REACT_APP_ENV="production"
+        - export NX_GOOGLE_MAPS_API=${GOOGLE_MAPS_API}
+        - export NX_ENV="production"
     script:
         - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=build --parallel=3 --configuration=production
     only:

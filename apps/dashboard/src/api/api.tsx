@@ -19,7 +19,7 @@ const baseURLs = {
 };
 
 const api = axios.create({
-	baseURL: baseURLs[process.env.NX_REACT_APP_ENV as "production" | "development" | "staging"],
+	baseURL: baseURLs[process.env.NX_ENV as "production" | "development" | "staging"],
 	timeout: 30000,
 
 	headers: {

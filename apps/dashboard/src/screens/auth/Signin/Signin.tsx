@@ -101,9 +101,7 @@ const SignIn = ({ loading, onSubmit, methods, onClickSignUp }: SigninProps): JSX
 									text={t("screens.signin.createAccountBtn")}
 								/>
 							</form>
-							{process.env.NX_REACT_APP_VERSION && (
-								<p className="version">HYGO v.{process.env.NX_REACT_APP_VERSION}</p>
-							)}
+							{process.env.NX_VERSION && <p className="version">HYGO v.{process.env.NX_VERSION}</p>}
 						</FormProvider>
 					)}
 				</StyledWrapper>
