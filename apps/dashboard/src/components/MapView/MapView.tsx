@@ -128,7 +128,6 @@ const MapView = (): JSX.Element => {
 		const {
 			latLng: { lat, lng },
 		} = event;
-
 		onMoveMarker(lng(), lat(), index);
 	};
 	const onDragMarkerEnd = (event: EventMap, index: number): void => {
