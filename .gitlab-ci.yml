@@ -10,7 +10,7 @@ variables:
     DISTR_ID_PROD: ${NX_CLOUDFRONT_DISTRIBUTION_ID_PROD}
     GOOGLE_MAPS_API: ${NX_GOOGLE_MAPS_API}
     SENTRY_AUTH_TOKEN: ${NX_SENTRY_AUTH_TOKEN}
-    VERSION: "2.7.0"
+    VERSION: "2.7.1"
 
 stages:
     - test
@@ -70,7 +70,7 @@ build_develop:
       - develop
     artifacts:
         paths:
-          - dist/app/dashboard
+          - ./dist/app/dashboard
         expire_in: "10 days"
 
 build_release:
@@ -90,7 +90,7 @@ build_release:
       - release
     artifacts:
         paths:
-          - dist/app/dashboard
+          - ./dist/app/dashboard
         expire_in: "10 days"
 
 # build_release:
