@@ -8,7 +8,7 @@ variables:
     S3_BUCKET_DEV: ${BUCKET_DEV}
     DISTR_ID_TEST: ${CLOUDFRONT_DISTRIBUTION_ID_TEST}
     DISTR_ID_PROD: ${CLOUDFRONT_DISTRIBUTION_ID_PROD}
-    VERSION: "2.6.9"
+    VERSION: "2.7.0"
 
 stages:
     - test
@@ -66,6 +66,10 @@ build_develop:
         - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=build --parallel=3 --configuration=staging
     only:
       - develop
+    artifacts:
+        paths:
+          - dist/app/dashboard
+        expire_in: "10 days"
 
 build_release:
     stage: build
@@ -82,6 +86,10 @@ build_release:
         - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=build --parallel=3 --configuration=production
     only:
       - release
+    artifacts:
+        paths:
+          - dist/app/dashboard
+        expire_in: "10 days"
 
 # build_release:
 #     image: node:16
