@@ -13,7 +13,7 @@ variables:
     VERSION: "2.7.1"
 
 stages:
-    - test
+    # - test
     - build
 #    - deploy
 
@@ -38,19 +38,19 @@ stages:
     paths:
       - node_modules/.cache/nx
 
-format-check:
-  stage: test
-  extends: .distributed
-  script:
-    - npx nx format:check --base=$NX_BASE --head=$NX_HEAD
+# format-check:
+#   stage: test
+#   extends: .distributed
+#   script:
+#     - npx nx format:check --base=$NX_BASE --head=$NX_HEAD
 
-lint:
-  stage: test
-  extends: .distributed
-  script:
-    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=tsc --parallel=3
-    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=ts-prune --parallel=3
-    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=lint --parallel=3
+# lint:
+#   stage: test
+#   extends: .distributed
+#   script:
+#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=tsc --parallel=3
+#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=ts-prune --parallel=3
+#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=lint --parallel=3
 
 
 build_develop:
