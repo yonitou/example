@@ -11,7 +11,7 @@ variables:
     VERSION: "2.6.5"
 
 stages:
-    # - check-lint
+    - test
     - build
 #    - deploy
 
@@ -19,10 +19,9 @@ stages:
   image: node:16
   interruptible: true
   only:
-    - nx-config
-#    - main
-#    - develop
-#    - merge_requests
+    - develop
+    - release
+
   cache:
     key:
       files:
@@ -37,13 +36,19 @@ stages:
     paths:
       - node_modules/.cache/nx
 
-# lint:
-#   stage: check-lint
-#   extends: .distributed
-#   script:
-#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=tsc --parallel=3
-#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=ts-prune --parallel=3
-#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=lint --parallel=3
+format-check:
+  stage: test
+  extends: .distributed
+  script:
+    - npx nx format:check --base=$NX_BASE --head=$NX_HEAD
+
+lint:
+  stage: test
+  extends: .distributed
+  script:
+    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=tsc --parallel=3
+    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=ts-prune --parallel=3
+    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=lint --parallel=3
 
 
 build_develop:
@@ -62,6 +67,27 @@ build_develop:
     artifacts:
         paths:
             - ./dist/apps/dashboard
+    only:
+      - develop
+
+build_release:
+    stage: build
+    extends: .distributed
+    before_script:
+        - npm ci --cache .npm --prefer-offline --legacy-peer-deps
+        - NX_HEAD=$CI_COMMIT_SHA
+        - NX_BASE=${CI_MERGE_REQUEST_DIFF_BASE_SHA:-$CI_COMMIT_BEFORE_SHA}
+        - export NX_REACT_APP_VERSION=${VERSION}
+        - export NX_SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
+        - export NX_REACT_APP_GOOGLE_API=${GOOGLE_MAPS_API}
+        - export NX_REACT_APP_ENV="production"
+    script:
+        - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=build --parallel=3 --configuration=production
+    artifacts:
+        paths:
+            - ./dist/apps/dashboard
+    only:
+      - release
 
 # build_release:
 #     image: node:16

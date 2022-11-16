@@ -14,15 +14,12 @@ import { planType } from "@Types/plan.types";
 
 const baseURLs = {
 	production: "https://api-prod-blue.alvie.fr",
-	dev: "https://api-test.alvie.fr",
+	development: "https://api-test.alvie.fr",
 	staging: "https://api-test.alvie.fr",
-	local: "http://localhost:3000",
 };
 
-console.log(process.env);
-
 const api = axios.create({
-	baseURL: baseURLs[process.env.NX_REACT_APP_ENV as "production" | "dev" | "local" | "staging"],
+	baseURL: baseURLs[process.env.NX_REACT_APP_ENV as "production" | "development" | "staging"],
 	timeout: 30000,
 
 	headers: {
