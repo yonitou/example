@@ -7,10 +7,11 @@
 	"targets": {
 		"build": {
 			"executor": "@nrwl/webpack:webpack",
-			"outputPath": "dist/apps/dashboard",
+			"outputs": ["{options.outputPath}"],
 			"defaultConfiguration": "staging",
 			"options": {
 				"compiler": "babel",
+				"outputPath": "dist/apps/dashboard",
 				"index": "apps/dashboard/src/index.html",
 				"baseHref": "/",
 				"main": "apps/dashboard/src/index.tsx",
