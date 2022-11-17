@@ -16,7 +16,7 @@ const bundleConfig = {
 	bundleId: "com.alvie.hygo.preview",
 	simpleLocalizeURL: "https://cdn.simplelocalize.io/3e08ddc9fe4f48a38e06505208ddca4e/_latest/{{lng}}",
 	iconPath: "./src/assets/icon-team.png",
-	buildNumber: "469",
+	buildNumber: "470",
 	version: "5.1.0",
 	sentryDSN: "https://17b2de60ae4644a8937235c9a5d8d8da@o1077021.ingest.sentry.io/6254181",
 	sentryProject: "hygo-team",
@@ -61,7 +61,7 @@ const {
 	dashboardUrl,
 } = bundleConfig;
 
-const OTA = "221109";
+const OTA = "221117";
 
 export default ({ config }: ConfigContext): ExpoConfig => {
 	return {
