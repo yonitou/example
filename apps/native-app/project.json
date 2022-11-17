@@ -30,7 +30,26 @@
 		},
 		"build": {
 			"executor": "@nrwl/expo:build",
-			"options": {}
+			"defaultConfiguration": "development",
+			"options": {
+				"platform": "all",
+				"nonInteractive": true,
+				"wait": true,
+				"clearCache": true
+			},
+			"configurations": {
+				"development": {
+					"profile": "development"
+				},
+				"staging": {
+					"profile": "staging"
+				},
+				"production": {
+					"profile": "production",
+					"autoSubmit": true,
+					"autoSubmitWithProfile": "production"
+				}
+			}
 		},
 		"build-list": {
 			"executor": "@nrwl/expo:build-list",
