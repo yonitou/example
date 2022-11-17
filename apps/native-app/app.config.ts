@@ -3,13 +3,13 @@ import { ExpoConfig, ConfigContext } from "@expo/config";
 
 enum ENV_ENUM {
 	PRODUCTION = "production",
-	PREVIEW = "preview",
+	STAGING = "staging",
 	DEVELOPMENT = "development",
 }
 
 const bundleConfig = {
 	amplitudeApiKey: "5e1972799e8e01ecf44860aeb6525240",
-	appEnv: ENV_ENUM.PREVIEW,
+	appEnv: ENV_ENUM.STAGING,
 	apiUrl: "https://api-test.alvie.fr",
 	logRocketAppId: "zklmfz/hygo-team",
 	name: "Hygo (Team)",
@@ -23,14 +23,14 @@ const bundleConfig = {
 	dashboardUrl: "test.alvie.fr",
 };
 
-if (process.env.APP_ENV === ENV_ENUM.DEVELOPMENT) {
+if (process.env.NX_ENV === ENV_ENUM.DEVELOPMENT) {
 	bundleConfig.appEnv = ENV_ENUM.DEVELOPMENT;
 	bundleConfig.name = "Hygo (Dev)";
 	bundleConfig.bundleId = "com.alvie.hygo.dev";
 	bundleConfig.iconPath = "./src/assets/icon-dev.png";
 }
 
-if (process.env.APP_ENV === ENV_ENUM.PRODUCTION) {
+if (process.env.NX_ENV === ENV_ENUM.PRODUCTION) {
 	bundleConfig.amplitudeApiKey = "966957b9e0216e6f14089b53205473ff";
 	bundleConfig.logRocketAppId = "zklmfz/hygo";
 	bundleConfig.appEnv = ENV_ENUM.PRODUCTION;
@@ -90,7 +90,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
 		version,
 		orientation: "portrait",
 		icon: iconPath,
-		plugins: ["sentry-expo", "@logrocket/react-native"],
+		plugins: ["sentry-expo"],
 		splash: {
 			image: "./src/assets/splash.png",
 			resizeMode: "cover",

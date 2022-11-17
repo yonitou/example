@@ -1,5 +1,9 @@
-{"webcredentials":
-  {
-    "apps": ["T2JN7JTM5G.com.alvie.hygo.preview", "T2JN7JTM5G.com.alvie.hygo.dev", "T2JN7JTM5G.com.alvie.hygo"]
-  }
+{
+	"webcredentials": {
+		"apps": [
+			"T2JN7JTM5G.com.alvie.hygo.preview",
+			"T2JN7JTM5G.com.alvie.hygo.dev",
+			"T2JN7JTM5G.com.alvie.hygo"
+		]
+	}
 }

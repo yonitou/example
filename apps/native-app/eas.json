@@ -7,7 +7,7 @@
 			"releaseChannel": "development",
 
 			"env": {
-				"APP_ENV": "development"
+				"NX_ENV": "development"
 			}
 		},
 		"simulator": {
@@ -16,17 +16,17 @@
 				"simulator": true
 			}
 		},
-		"preview": {
+		"staging": {
 			"distribution": "internal",
-			"releaseChannel": "preview",
+			"releaseChannel": "staging",
 			"env": {
-				"APP_ENV": "preview"
+				"NX_ENV": "staging"
 			}
 		},
 		"production": {
 			"releaseChannel": "production",
 			"env": {
-				"APP_ENV": "production"
+				"NX_ENV": "production"
 			}
 		}
 	},

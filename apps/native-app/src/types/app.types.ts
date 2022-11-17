@@ -6,6 +6,6 @@ export enum appStateEnum {
 
 export enum ENV_ENUM {
 	PRODUCTION = "production",
-	PREVIEW = "preview",
+	STAGING = "staging",
 	DEVELOPMENT = "development",
 }

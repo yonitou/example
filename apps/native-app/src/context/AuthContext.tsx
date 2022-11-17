@@ -9,7 +9,7 @@ import { registerForPushNotificationsAsync } from "@Utils/notifications";
 import { checkSetup, deletePushToken, getTokenFromUser, getUser } from "@Api/hygoApi";
 import Analytics from "@Analytics";
 import { userProperties } from "@Types/user.types";
-import LogRocket from "@logrocket/react-native";
+// import LogRocket from "@logrocket/react-native";
 import { ErrorsEnum, UserStatusEnum } from "@Types/auth.types";
 import { SnackbarContext, SnackTypeEnum } from "./SnackBarContext";
 
@@ -146,14 +146,14 @@ const AuthProvider = ({ children }: { children: JSX.Element }): JSX.Element => {
 		}
 	}, []);
 
-	const initLogRocket = (userProps: userProperties): void => {
-		LogRocket.identify(userProps?.userId?.toString() || userProps?.admin?.userId?.toString(), {
-			name: `${userProps?.firstName || userProps?.admin?.firstName} ${
-				userProps?.lastName || userProps?.admin?.lastName
-			}`,
-			email: userProps?.email,
-		});
-	};
+	// const initLogRocket = (userProps: userProperties): void => {
+	// 	LogRocket.identify(userProps?.userId?.toString() || userProps?.admin?.userId?.toString(), {
+	// 		name: `${userProps?.firstName || userProps?.admin?.firstName} ${
+	// 			userProps?.lastName || userProps?.admin?.lastName
+	// 		}`,
+	// 		email: userProps?.email,
+	// 	});
+	// };
 
 	const login = useCallback(
 		async (token: string, barCode?: string): Promise<void> => {
@@ -167,7 +167,7 @@ const AuthProvider = ({ children }: { children: JSX.Element }): JSX.Element => {
 					fetchedUser?.userId?.toString() || fetchedUser?.admin?.userId?.toString(),
 					fetchedUser
 				);
-				initLogRocket(fetchedUser);
+				// initLogRocket(fetchedUser);
 				logAnalyticEvent(events.auth.login, { barCode });
 				if (!fetchedUser?.userId) {
 					setStatus(UserStatusEnum.ADMIN);

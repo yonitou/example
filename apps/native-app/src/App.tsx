@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import LogRocket from "@logrocket/react-native";
+// import LogRocket from "@logrocket/react-native";
 import * as Sentry from "sentry-expo";
 import i18next from "i18next";
 import { AppState, LogBox, Platform, StyleSheet } from "react-native";
@@ -162,13 +162,13 @@ const App = (): JSX.Element => {
 		};
 	}, [setHasConnection, setAppState]);
 
-	useEffect(() => {
-		if (Constants.manifest.extra.appEnv !== ENV_ENUM.DEVELOPMENT && Platform.OS !== "android" && tester === false) {
-			LogRocket.init(Constants.manifest.extra.logRocketAppId);
-		} else {
-			LogRocket.shutdown();
-		}
-	}, [tester]);
+	// useEffect(() => {
+	// 	if (Constants.manifest.extra.appEnv !== ENV_ENUM.DEVELOPMENT && Platform.OS !== "android" && tester === false) {
+	// 		LogRocket.init(Constants.manifest.extra.logRocketAppId);
+	// 	} else {
+	// 		LogRocket.shutdown();
+	// 	}
+	// }, [tester]);
 
 	return (
 		<AnimatedSplashScreen imagesList={IMAGES_LIST} image={splashImage}>

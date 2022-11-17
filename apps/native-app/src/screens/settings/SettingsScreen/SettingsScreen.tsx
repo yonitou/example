@@ -51,7 +51,7 @@ const SettingsScreen = ({
 						<ParagraphSB style={styles.description}>{t("screens.settings.user.description")}</ParagraphSB>
 					</View>
 				)}
-				{(appEnv === ENV_ENUM.PREVIEW || appEnv === ENV_ENUM.DEVELOPMENT) && (
+				{(appEnv === ENV_ENUM.STAGING || appEnv === ENV_ENUM.DEVELOPMENT) && (
 					<View style={[styles.card, styles.zIndexCard]}>
 						<Title>{t("screens.settings.clearData.title")}</Title>
 						<BaseButton color={COLORS.LAKE} outlined onPress={onDeleteLocalData}>

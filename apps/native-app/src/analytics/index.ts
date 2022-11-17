@@ -1,12 +1,12 @@
 import Constants from "expo-constants";
-import { Amplitude } from "@amplitude/react-native";
+// import { Amplitude } from "@amplitude/react-native";
 
 import { userProperties } from "@Types/user.types";
 import _ from "lodash";
 import { fieldType } from "@Types/field.types";
 
-const ampInstance = Amplitude.getInstance();
-ampInstance.init(Constants.manifest.extra.amplitudeApiKey);
+// const ampInstance = Amplitude.getInstance();
+// ampInstance.init(Constants.manifest.extra.amplitudeApiKey);
 
 enum authFlow {
 	login = "Connexion",
@@ -146,23 +146,23 @@ const logAnalyticEvent = async (
 			? (properties?.selectedFields as fieldType[])?.map((f) => _.omit(f, ["features", "svg"]))
 			: null;
 	const aggregatedProperties = { ...properties, selectedFields: formattedSelectedFields };
-	await Amplitude.getInstance().logEvent(event, aggregatedProperties);
+	// await Amplitude.getInstance().logEvent(event, aggregatedProperties);
 };
 
 const setAmplitudeUser = async (userId: string, props?: userProperties): Promise<void> => {
-	await Amplitude.getInstance().setUserId(userId);
-	const userProps = {
-		...props,
-		version: Constants.manifest.extra.version,
-		build: Constants.manifest.extra.build,
-		OTA: Constants.manifest.extra.OTA,
-	};
-	if (props) await Amplitude.getInstance().setUserProperties(userProps);
+	// await Amplitude.getInstance().setUserId(userId);
+	// const userProps = {
+	// 	...props,
+	// 	version: Constants.manifest.extra.version,
+	// 	build: Constants.manifest.extra.build,
+	// 	OTA: Constants.manifest.extra.OTA,
+	// };
+	// if (props) await Amplitude.getInstance().setUserProperties(userProps);
 };
 
 const clearUser = async (): Promise<void> => {
-	await Amplitude.getInstance().setUserId(null);
-	await Amplitude.getInstance().clearUserProperties();
+	// await Amplitude.getInstance().setUserId(null);
+	// await Amplitude.getInstance().clearUserProperties();
 };
 
 const Analytics = {
