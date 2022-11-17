@@ -39,7 +39,8 @@
 			},
 			"configurations": {
 				"simulator": {
-					"profile": "simulator"
+					"profile": "simulator",
+					"local": true
 				},
 				"development": {
 					"profile": "development"
