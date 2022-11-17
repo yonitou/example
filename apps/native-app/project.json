@@ -30,7 +30,7 @@
 		},
 		"build": {
 			"executor": "@nrwl/expo:build",
-			"defaultConfiguration": "development",
+			"defaultConfiguration": "simulator",
 			"options": {
 				"platform": "all",
 				"nonInteractive": true,
@@ -38,6 +38,9 @@
 				"clearCache": true
 			},
 			"configurations": {
+				"simulator": {
+					"profile": "simulator"
+				},
 				"development": {
 					"profile": "development"
 				},
