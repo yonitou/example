@@ -61,7 +61,6 @@ const KeyboardShift = (props: Props): JSX.Element => {
 	// And React Native's KeyboardAvoidingView isn't always reliable
 	if (Platform.OS === "android") {
 		return (
-			// eslint-disable-next-line react/jsx-props-no-spreading
 			<Animated.View style={[animatedStyle, style]} {...others}>
 				{children}
 			</Animated.View>
@@ -72,7 +71,6 @@ const KeyboardShift = (props: Props): JSX.Element => {
 	// behavior 'padding' works fine on all ios devices (and keyboard types)
 
 	return (
-		// eslint-disable-next-line react/jsx-props-no-spreading
 		<KeyboardAvoidingView keyboardVerticalOffset={headerOffset || 0} style={style} behavior="padding" {...others}>
 			{children}
 		</KeyboardAvoidingView>
