@@ -22,7 +22,10 @@
 		"lib": ["esnext", "DOM", "DOM.Iterable"],
 		"skipLibCheck": true,
 		"skipDefaultLibCheck": true,
-		"baseUrl": "."
+		"baseUrl": ".",
+		"paths": {
+			"@hygo/data-access": ["libs/shared/data-access/src/index.ts"]
+		}
 	},
 	"exclude": ["node_modules", "tmp"]
 }

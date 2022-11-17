@@ -58,16 +58,6 @@
 				]
 			}
 		},
-		"ts-prune": {
-			"executor": "nx:run-commands",
-			"options": {
-				"commands": [
-					{
-						"command": "ts-prune -e -p apps/dashboard/tsconfig.app.json"
-					}
-				]
-			}
-		},
 		"serve": {
 			"executor": "@nrwl/webpack:dev-server",
 			"defaultConfiguration": "development",

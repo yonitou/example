@@ -4,6 +4,8 @@
 		"jsx": "react-jsx",
 		"baseUrl": ".",
 		"paths": {
+			// TO DELETE
+			"@hygo/data-access": ["../../libs/shared/data-access/src/index.ts"],
 			"@Components/*": ["./src/components/*"],
 			"@Api/*": ["./src/api/*"],
 			"@Assets/*": ["./src/assets/*"],

@@ -12,6 +12,8 @@ import GlobalStyles from "@Styles/GlobalStyles";
 import { AppRouter } from "@Router/AppRouter";
 import Typography from "@Styles/Typography";
 import OADProvider from "@Context/OADContext";
+// eslint-disable-next-line
+import { sharedDataAccess } from "@hygo/data-access";
 
 const App = (): JSX.Element => {
 	const [i18nReady, setI18nReady] = useState<boolean>(false);

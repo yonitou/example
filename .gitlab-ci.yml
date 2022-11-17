@@ -10,7 +10,7 @@ variables:
     DISTR_ID_PROD: ${NX_CLOUDFRONT_DISTRIBUTION_ID_PROD}
     GOOGLE_MAPS_API: ${NX_GOOGLE_MAPS_API}
     SENTRY_AUTH_TOKEN: ${NX_SENTRY_AUTH_TOKEN}
-    VERSION: "2.7.3"
+    VERSION: "2.7.4"
 
 stages:
     # - test
@@ -49,7 +49,6 @@ stages:
 #   extends: .distributed
 #   script:
 #     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=tsc --parallel=3
-#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=ts-prune --parallel=3
 #     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=lint --parallel=3
 
 
