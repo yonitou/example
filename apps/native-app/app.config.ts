@@ -90,7 +90,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
 		version,
 		orientation: "portrait",
 		icon: iconPath,
-		plugins: ["./lib/withSimulatorExcludedArchitecture.ts", "sentry-expo", "@logrocket/react-native"],
+		plugins: ["sentry-expo", "@logrocket/react-native"],
 		splash: {
 			image: "./src/assets/splash.png",
 			resizeMode: "cover",

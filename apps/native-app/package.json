@@ -10,7 +10,20 @@
     "@expo/metro-config": "*",
     "react": "*",
     "react-native": "*",
-    "@expo/webpack-config": "*"
+    "@expo/webpack-config": "*",
+    "dotenv": "*",
+    "@expo/config": "*",
+    "expo-constants": "*",
+    "lodash": "*",
+    "axios": "*",
+    "i18next": "*",
+    "expo-splash-screen": "*",
+    "expo-font": "*",
+    "expo-asset": "*",
+    "react-i18next": "*",
+    "react-hook-form": "*",
+    "flagged": "*",
+    "i18next-http-backend": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && cp package-lock.json ./apps/native-app/",

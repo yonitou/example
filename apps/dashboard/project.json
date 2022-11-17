@@ -15,7 +15,7 @@
 				"index": "apps/dashboard/src/index.html",
 				"baseHref": "/",
 				"main": "apps/dashboard/src/index.tsx",
-				"tsConfig": "apps/dashboard/tsconfig.app.json",
+				"tsConfig": "apps/dashboard/tsconfig.json",
 				"assets": [
 					"apps/dashboard/src/favicon.ico",
 					"apps/dashboard/src/.well-known",
@@ -53,7 +53,7 @@
 			"options": {
 				"commands": [
 					{
-						"command": "tsc --noEmit -p apps/dashboard/tsconfig.app.json"
+						"command": "tsc --noEmit -p apps/dashboard/tsconfig.json"
 					}
 				]
 			}

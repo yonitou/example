@@ -1,13 +1,54 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"jsx": "react-native"
-	},
-	"include": [],
-	"references": [
-		{
-			"path": "./tsconfig.app.json"
+		"jsx": "react-native",
+		"baseUrl": ".",
+		"outDir": "../../dist/out-tsc",
+		"paths": {
+			"@Components/*": ["./src/components/*"],
+			"@Context/*": ["./src/context/*"],
+			"@Assets/*": ["./src/assets/*"],
+			"@Constants/*": ["./src/constants/*"],
+			"@Analytics": ["./src/analytics"],
+			"@Api/*": ["./src/api/*"],
+			"@Hooks/*": ["./src/hooks/*"],
+			"@I18n/*": ["./src/i18n/*"],
+			"@Icons/*": ["./src/icons/*"],
+			"@Navigators/*": ["./src/navigators/*"],
+			"@Screens/*": ["./src/screens/*"],
+			"@Types/*": ["./src/types/*"],
+			"@Utils/*": ["./src/utils/*"]
 		}
-	],
+	},
+	"include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
 	"exclude": ["node_modules"]
 }
+
+// {
+// 	"compilerOptions": {
+// 		"baseUrl": "./",
+// 		"paths": {
+// 			"@Components/*": ["./src/components/*"],
+// 			"@Context/*": ["./src/context/*"],
+// 			"@Assets/*": ["./src/assets/*"],
+// 			"@Constants/*": ["./src/constants/*"],
+// 			"@Analytics": ["./src/analytics"],
+// 			"@Api/*": ["./src/api/*"],
+// 			"@Hooks/*": ["./src/hooks/*"],
+// 			"@I18n/*": ["./src/i18n/*"],
+// 			"@Icons/*": ["./src/icons/*"],
+// 			"@Navigators/*": ["./src/navigators/*"],
+// 			"@Screens/*": ["./src/screens/*"],
+// 			"@Types/*": ["./src/types/*"],
+// 			"@Utils/*": ["./src/utils/*"]
+// 		}
+// 	},
+// 	"exclude": [
+// 		"node_modules",
+// 		"babel.config.js",
+// 		"metro.config.js",
+// 		"lib/withSimulatorExcludedArchitecture.ts",
+// 		"coverage"
+// 	],
+// 	"extends": "expo/tsconfig.base"
+// }

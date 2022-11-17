@@ -42,7 +42,7 @@ google-services.json
 google-service-account-api-key.json
 
 # Expo
-node_modules/
+node_modules
 .expo/
 dist/
 npm-debug.*

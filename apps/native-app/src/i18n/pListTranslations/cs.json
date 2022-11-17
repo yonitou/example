@@ -1,0 +1,6 @@
+{
+	"NSCameraUsageDescription": "Potřebujeme přístup ke kameře, abychom mohli naskenovat QR kód na vašem senzoru",
+	"NSLocationAlwaysUsageDescription": "Potřebujeme mít přístup k místu, abychom mohli určit zpracovávané balíky",
+	"NSLocationWhenInUseUsageDescription": "Potřebujeme mít přístup k místu, abychom mohli určit zpracovávané balíky",
+	"NSLocationAlwaysAndWhenInUseUsageDescription": "Potřebujeme mít přístup k místu, abychom mohli určit zpracovávané balíky"
+}

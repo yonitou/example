@@ -118,14 +118,14 @@
 		}
 	},
 	"tsc": {
-			"executor": "nx:run-commands",
-			"options": {
-				"commands": [
-					{
-						"command": "tsc --noEmit -p apps/native-app/tsconfig.app.json"
-					}
-				]
-			}
-		},
+		"executor": "nx:run-commands",
+		"options": {
+			"commands": [
+				{
+					"command": "tsc --noEmit -p apps/native-app/tsconfig.json"
+				}
+			]
+		}
+	},
 	"tags": []
 }

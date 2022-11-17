@@ -1,0 +1,6 @@
+{
+	"NSCameraUsageDescription": "We need access to your camera to scan the QR Code of your sensor",
+	"NSLocationAlwaysUsageDescription": "We need to have access to the location in order to determine the parcels being processed",
+	"NSLocationWhenInUseUsageDescription": "We need to have access to the location in order to determine the parcels being processed",
+	"NSLocationAlwaysAndWhenInUseUsageDescription": "We need to have access to the location in order to determine the parcels being processed"
+}
