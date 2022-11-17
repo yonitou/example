@@ -59,7 +59,7 @@
 		"@amplitude/react-native": "*"
 	},
 	"scripts": {
-		"eas-build-pre-install": "cd ../../ && cp package-lock.json ./apps/native-app/ && echo $GOOGLE_SERVICES_BASE64 | base64 -d > google-services.json",
+		"eas-build-pre-install": "cd ../../ && cp package-lock.json ./apps/native-app/ && echo $GOOGLE_SERVICES_BASE64 | base64 -d > ./apps/native-app/google-services.json",
 		"postinstall": "rm -r node_modules && cd ../../ && npm install && npx nx sync-deps native-app && npx nx ensure-symlink native-app"
 	}
 }

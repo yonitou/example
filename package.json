@@ -61,6 +61,7 @@
 		"react-datepicker": "^4.8.0",
 		"react-dom": "18.0.0",
 		"react-dropzone": "^14.2.1",
+		"@expo/config-plugins": "^5.0.0",
 		"react-hook-form": "^7.31.1",
 		"react-i18next": "^11.17.3",
 		"react-native": "0.69.6",
