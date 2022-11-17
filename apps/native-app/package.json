@@ -1,15 +1,19 @@
 {
-	"name": "native-app",
-	"version": "0.0.1",
-	"private": true,
-	"dependencies": {
-		"react-native": "*",
-		"expo": "*",
-		"react-native-svg": "*",
-		"react-native-web": "*"
-	},
-	"scripts": {
-		"eas-build-pre-install": "cd ../../ && cp package-lock.json ./apps/native-app/",
-		"postinstall": "rm -r node_modules && cd ../../ && npm install && npx nx sync-deps native-app && npx nx ensure-symlink native-app"
-	}
+  "name": "native-app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "expo": "*",
+    "react-native-svg": "*",
+    "react-native-web": "*",
+    "@nrwl/expo": "*",
+    "@expo/metro-config": "*",
+    "react": "*",
+    "react-native": "*",
+    "@expo/webpack-config": "*"
+  },
+  "scripts": {
+    "eas-build-pre-install": "cd ../../ && cp package-lock.json ./apps/native-app/",
+    "postinstall": "rm -r node_modules && cd ../../ && npm install && npx nx sync-deps native-app && npx nx ensure-symlink native-app"
+  }
 }
