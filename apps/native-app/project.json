@@ -115,17 +115,18 @@
 			"options": {
 				"lintFilePatterns": ["apps/native-app/**/*.{ts,tsx,js,jsx}"]
 			}
+		},
+		"tsc": {
+			"executor": "nx:run-commands",
+			"options": {
+				"commands": [
+					{
+						"command": "tsc --noEmit -p apps/native-app/tsconfig.json"
+					}
+				]
+			}
 		}
 	},
-	"tsc": {
-		"executor": "nx:run-commands",
-		"options": {
-			"commands": [
-				{
-					"command": "tsc --noEmit -p apps/native-app/tsconfig.json"
-				}
-			]
-		}
-	},
+
 	"tags": []
 }
