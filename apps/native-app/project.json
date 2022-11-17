@@ -39,9 +39,7 @@
 			},
 			"configurations": {
 				"simulator": {
-					"profile": "simulator",
-					"local": true,
-					"platform": "android"
+					"profile": "simulator"
 				},
 				"development": {
 					"profile": "development"
