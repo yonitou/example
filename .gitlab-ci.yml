@@ -10,10 +10,10 @@ variables:
     DISTR_ID_PROD: ${NX_CLOUDFRONT_DISTRIBUTION_ID_PROD}
     GOOGLE_MAPS_API: ${NX_GOOGLE_MAPS_API}
     SENTRY_AUTH_TOKEN: ${NX_SENTRY_AUTH_TOKEN}
-    VERSION: "2.7.2"
+    VERSION: "2.7.3"
 
 stages:
-    - test
+    # - test
     - build
     - deploy
 
@@ -38,19 +38,19 @@ stages:
     paths:
       - node_modules/.cache/nx
 
-format-check:
-  stage: test
-  extends: .distributed
-  script:
-    - npx nx format:check --base=$NX_BASE --head=$NX_HEAD
+# format-check:
+#   stage: test
+#   extends: .distributed
+#   script:
+#     - npx nx format:check --base=$NX_BASE --head=$NX_HEAD
 
-lint:
-  stage: test
-  extends: .distributed
-  script:
-    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=tsc --parallel=3
-    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=ts-prune --parallel=3
-    - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=lint --parallel=3
+# lint:
+#   stage: test
+#   extends: .distributed
+#   script:
+#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=tsc --parallel=3
+#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=ts-prune --parallel=3
+#     - npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=lint --parallel=3
 
 
 build_develop:
@@ -117,7 +117,7 @@ deploy_develop:
         # - export DISTR_ID=${DISTR_ID_TEST}
     script:
         - pip install awscli #Install awscli tools
-        - aws s3 sync ./build/ s3://${S3_BUCKET}
+        - aws s3 sync ./dist/apps/dashboard s3://${S3_BUCKET}
         # - aws cloudfront create-invalidation --distribution-id ${DISTR_ID} --paths "/*"
     only:
         - develop
