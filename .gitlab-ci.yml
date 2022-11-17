@@ -15,7 +15,7 @@ variables:
 stages:
     - test
     - build
-#    - deploy
+    - deploy
 
 .distributed:
   image: node:16
@@ -109,18 +109,18 @@ build_release:
 #     only:
 #         - release
 
-# deploy_develop:
-#     image: python:latest
-#     stage: deploy
-#     before_script:
-#         - export S3_BUCKET=${S3_BUCKET_DEV}
-#         - export DISTR_ID=${DISTR_ID_TEST}
-#     script:
-#         - pip install awscli #Install awscli tools
-#         - aws s3 sync ./build/ s3://${S3_BUCKET}
-#         - aws cloudfront create-invalidation --distribution-id ${DISTR_ID} --paths "/*"
-#     only:
-#         - develop
+deploy_develop:
+    image: python:latest
+    stage: deploy
+    before_script:
+        - export S3_BUCKET=dashboard-monorepo
+        # - export DISTR_ID=${DISTR_ID_TEST}
+    script:
+        - pip install awscli #Install awscli tools
+        - aws s3 sync ./build/ s3://${S3_BUCKET}
+        # - aws cloudfront create-invalidation --distribution-id ${DISTR_ID} --paths "/*"
+    only:
+        - develop
 
 # deploy_release:
 #     image: python:latest
