@@ -4,7 +4,7 @@
 echo '🏗️👷 Styling, testing and building your project before committing'
 
 # Check Prettier standards
-nx affected --target=format --all ||
+npx nx affected --target=format --all ||
 (
     echo 'Prettier check Failed.';
     false;
@@ -12,7 +12,7 @@ nx affected --target=format --all ||
 
 echo '✅ Your code style is looking good, checking Typescript now ...'
 # Check tsconfig standards
-nx affected --target=tsc --all ||
+npx nx affected --target=tsc --all ||
 (
     echo 'Typescript checks failed. Make the changes required above.'
     false;
@@ -21,7 +21,7 @@ nx affected --target=tsc --all ||
 echo '✅ No Typescript error, congrats ! Checking ESLint'
 
 # Check ESLint Standards
-nx affected --target=lint --all ||
+npx nx affected --target=lint --all ||
 (
         echo 'ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
         false;

@@ -40,3 +40,22 @@ Thumbs.db
 
 # Env
 .env*
+
+# keys
+hygo.jks
+
+# Expo
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+
+apps/native-app-e2e/artifacts
