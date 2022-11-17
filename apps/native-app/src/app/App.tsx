@@ -1,377 +1,228 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useRef, useState } from "react";
-import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, TouchableOpacity, Linking } from "react-native";
+import { useState, useContext, useEffect } from "react";
+import LogRocket from "@logrocket/react-native";
+import * as Sentry from "sentry-expo";
+import i18next from "i18next";
+import { AppState, LogBox, Platform, StyleSheet } from "react-native";
+import * as Updates from "expo-updates";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Constants from "expo-constants";
+import "intl";
+import "intl/locale-data/jsonp/en";
+import "intl/locale-data/jsonp/fr";
+import "intl/locale-data/jsonp/es";
+import "intl/locale-data/jsonp/cs";
+import "intl/locale-data/jsonp/pt";
+import "intl-pluralrules";
+import * as SplashScreen from "expo-splash-screen";
+import * as Notifications from "expo-notifications";
+import NetInfo from "@react-native-community/netinfo";
+import { notificationsEnum } from "@Types/notification.types";
+import { TourGuideProvider } from "rn-tourguide";
+import StepperOnboarding from "@Screens/home/HomeScreen/components/StepperOnboarding";
+import SnackbarProvider from "@Context/SnackBarContext";
+import NewUpdateScreen from "@Screens/home/NewUpdateScreen";
+import ModalsProvider from "@Context/ModalContext";
+import AuthProvider, { AuthContext } from "@Context/AuthContext";
+import AppNavigationContainer from "@Navigators/index";
+import Modals from "@Components/modals";
+import { UserStatusEnum } from "@Types/auth.types";
+import { handleNotificationResponse, markAsReadAndUpdateBadgeCount } from "@Utils/notifications";
+import UserProvider, { UserContext } from "@Context/UserContext";
+import ModulationProvider from "@Context/ModulationContext";
+import { appStateEnum, ENV_ENUM } from "@Types/app.types";
+import ErrorComponent from "@Components/ErrorComponent";
+import HygoIcons from "@Icons/HygoIcons";
+import { GRADIENTS } from "@Constants/palette";
 
-import Checkmark from "./icons/checkmark.svg";
-import Book from "./icons/book.svg";
-import ChevronRight from "./icons/chevron-right.svg";
-import Blog from "./icons/blog.svg";
-import Courses from "./icons/courses.svg";
-import YouTube from "./icons/youtube.svg";
-import Pointer from "./icons/pointer.svg";
-import VSCode from "./icons/vscode.svg";
-import NxCloud from "./icons/nx-cloud.svg";
-import GitHub from "./icons/github.svg";
-import Terminal from "./icons/terminal.svg";
-import Heart from "./icons/heart.svg";
+// Images
+import barcodeImage from "@Assets/authentication/barcode.png";
+import blueBackgroundImage from "@Assets/authentication/bg.png";
+import homeBackground from "@Assets/home/background.png";
+import drawerLogo from "@Assets/home/drawer-logo.png";
+import cloudy from "@Assets/meteo/cloudy.png";
+import rainy from "@Assets/meteo/rainy.png";
+import snowy from "@Assets/meteo/snowy.png";
+import stormy from "@Assets/meteo/stormy.png";
+import sunny from "@Assets/meteo/sunny.png";
+import curvedArrow from "@Assets/modulation/curved-arrow.png";
+import injectionNozzle from "@Assets/equipment/injection.png";
+import lowPressureNozzle from "@Assets/equipment/low-pressure.png";
+import pastilleNozzle from "@Assets/equipment/calibrate.png";
+import standardNozzle from "@Assets/equipment/standard.png";
+import spinner from "@Assets/spinner.gif";
+import clara from "@Assets/home/clara.png";
+import hveImg from "@Assets/settings/hve.png";
+import backgroundLanding from "@Assets/authentication/landing/background.png";
+import backgroundSignin from "@Assets/authentication/signin/background.png";
+import planStep1 from "@Assets/home/plan-step-1.png";
+import planStep2 from "@Assets/home/plan-step-2.png";
+import defaultFarmWithoutFields from "@Assets/authentication/activation-error/defaultFarmWithoutFields.png";
+import needUpdateVersionStep1 from "@Assets/authentication/activation-error/needUpdateVersion-step1.png";
+import needUpdateVersionStep2 from "@Assets/authentication/activation-error/needUpdateVersion-step2.png";
+import noDefaultFarm from "@Assets/authentication/activation-error/noDefaultFarm.png";
+import noPlan from "@Assets/authentication/activation-error/noPlan.png";
+import AnimatedSplashScreen from "@Components/AnimatedSplashScreen";
+import splashImage from "@Assets/splash.png";
+import { initTranslations } from "@I18n/i18n";
 
-const App = (): JSX.Element => {
-	const [whatsNextYCoord, setWhatsNextYCoord] = useState<number>(0);
-	const scrollViewRef = useRef<null | ScrollView>(null);
+LogBox.ignoreLogs(["Non-serializable values were found in the navigation state."]);
 
-	return (
-		<>
-			<StatusBar barStyle="dark-content" />
-			<SafeAreaView>
-				<ScrollView
-					ref={(ref) => {
-						scrollViewRef.current = ref;
-					}}
-					contentInsetAdjustmentBehavior="automatic"
-					style={styles.scrollView}
-				>
-					<View style={styles.section}>
-						<Text style={styles.textLg}>Hello there,</Text>
-						<Text style={[styles.textXL, styles.appTitleText]} testID="heading">
-							Welcome NativeApp 👋
-						</Text>
-					</View>
-					<View style={styles.section}>
-						<View style={styles.hero}>
-							<View style={styles.heroTitle}>
-								<Checkmark width={32} height={32} stroke="hsla(162, 47%, 50%, 1)" />
-								<Text style={[styles.textLg, styles.heroTitleText]}>You're up and running</Text>
-							</View>
-							<TouchableOpacity
-								style={styles.whatsNextButton}
-								onPress={() => {
-									scrollViewRef.current?.scrollTo({
-										x: 0,
-										y: whatsNextYCoord,
-									});
-								}}
-							>
-								<Text style={[styles.textMd, styles.textCenter]}>What's next?</Text>
-							</TouchableOpacity>
-						</View>
-					</View>
-					<View style={styles.section}>
-						<View style={[styles.shadowBox]}>
-							<Text style={[styles.marginBottomMd, styles.textLg]}>Learning materials</Text>
-							<TouchableOpacity
-								style={[styles.listItem, styles.learning]}
-								onPress={() =>
-									Linking.openURL("https://nx.dev/getting-started/intro?utm_source=nx-project")
-								}
-							>
-								<Book width={24} height={24} stroke="#000000" />
-								<View style={styles.listItemTextContainer}>
-									<Text style={[styles.textMd]}>Documentation</Text>
-									<Text style={[styles.text2XS, styles.textSubtle]}>Everything is in there</Text>
-								</View>
-								<ChevronRight width={18} height={18} stroke="#000000" />
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={[styles.listItem, styles.learning]}
-								onPress={() => Linking.openURL("https://blog.nrwl.io/?utm_source=nx-project")}
-							>
-								<Blog width={24} height={24} stroke="#000000" />
-								<View style={styles.listItemTextContainer}>
-									<Text style={[styles.textMd]}>Blog</Text>
-									<Text style={[styles.text2XS, styles.textSubtle]}>
-										Changelog, features & events
-									</Text>
-								</View>
-								<ChevronRight width={18} height={18} stroke="#000000" />
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={[styles.listItem, styles.learning]}
-								onPress={() =>
-									Linking.openURL("https://www.youtube.com/c/Nrwl_io/videos?utm_source=nx-project")
-								}
-							>
-								<YouTube width={24} height={24} fill="#000000" />
-								<View style={styles.listItemTextContainer}>
-									<Text style={[styles.textMd]}>Youtube channel</Text>
-									<Text style={[styles.text2XS, styles.textSubtle]}>Nx Show, talks & tutorials</Text>
-								</View>
-								<ChevronRight width={18} height={18} stroke="#000000" />
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={[styles.listItem, styles.learning]}
-								onPress={() =>
-									Linking.openURL(
-										"https://nx.dev/react-tutorial/1-code-generation?utm_source=nx-project"
-									)
-								}
-							>
-								<Pointer width={24} height={24} stroke="#000000" />
-								<View style={styles.listItemTextContainer}>
-									<Text style={[styles.textMd]}>Interactive tutorials</Text>
-									<Text style={[styles.text2XS, styles.textSubtle]}>Create an app, step by step</Text>
-								</View>
-								<ChevronRight width={18} height={18} stroke="#000000" />
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={[styles.listItem, styles.learning]}
-								onPress={() => Linking.openURL("https://nxplaybook.com/?utm_source=nx-project")}
-							>
-								<Courses width={24} height={24} stroke="#000000" />
-								<View style={styles.listItemTextContainer}>
-									<Text style={[styles.textMd]}>Video courses</Text>
-									<Text style={[styles.text2XS, styles.textSubtle]}>Nx custom courses</Text>
-								</View>
-								<ChevronRight width={18} height={18} stroke="#000000" />
-							</TouchableOpacity>
-						</View>
-					</View>
-					<View style={styles.section}>
-						<TouchableOpacity
-							onPress={() =>
-								Linking.openURL(
-									"https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console&utm_source=nx-project"
-								)
-							}
-						>
-							<View style={[styles.listItem, styles.shadowBox]}>
-								<VSCode width={48} height={48} fill="rgba(0, 122, 204, 1)" />
-								<View style={styles.listItemTextContainer}>
-									<Text style={[styles.textMd, styles.textBold, styles.marginBottomSm]}>
-										Install Nx Console
-									</Text>
-									<Text style={[styles.textXS, styles.textLight]}>Plugin for VSCode</Text>
-								</View>
-							</View>
-						</TouchableOpacity>
-					</View>
-					<View style={styles.section}>
-						<TouchableOpacity onPress={() => Linking.openURL("https://nx.app/?utm_source=nx-project")}>
-							<View style={styles.shadowBox}>
-								<View style={[styles.listItem, styles.marginBottomMd]}>
-									<NxCloud width={48} height={48} />
-									<View style={styles.listItemTextContainer}>
-										<Text style={[styles.textMd, styles.textBold, styles.marginBottomSm]}>
-											Nx Cloud
-										</Text>
-										<Text style={[styles.textXS, styles.textLight]}>
-											Enable faster CI & better DX
-										</Text>
-									</View>
-								</View>
-								<View style={styles.codeBlock}>
-									<Text style={[styles.monospace]}>nx connect-to-nx-cloud</Text>
-								</View>
-							</View>
-						</TouchableOpacity>
-					</View>
-					<View style={styles.section}>
-						<TouchableOpacity onPress={() => Linking.openURL("https://nx.app/?utm_source=nx-project")}>
-							<View style={[styles.listItem, styles.shadowBox]}>
-								<GitHub width={48} height={48} fill="#000000" />
-								<View style={styles.listItemTextContainer}>
-									<Text style={[styles.textMd, styles.textBold, styles.marginBottomSm]}>
-										Nx is open source
-									</Text>
-									<Text style={[styles.textXS, styles.textLight]}>Love Nx? Give us a star!</Text>
-								</View>
-							</View>
-						</TouchableOpacity>
-					</View>
-					<View
-						style={styles.section}
-						onLayout={(event) => {
-							const layout = event.nativeEvent.layout;
-							setWhatsNextYCoord(layout.y);
-						}}
-					>
-						<View style={styles.shadowBox}>
-							<Text style={[styles.textLg, styles.marginBottomMd]}>Next steps</Text>
-							<Text style={[styles.textSm, styles.textLight, styles.marginBottomMd]}>
-								Here are some things you can do with Nx:
-							</Text>
-							<View style={styles.listItem}>
-								<Terminal width={24} height={24} stroke="#000000" />
-								<View style={styles.listItemTextContainer}>
-									<Text style={styles.textSm}>Add UI library</Text>
-								</View>
-							</View>
-							<View style={[styles.codeBlock, styles.marginBottomLg]}>
-								<Text style={[styles.textXS, styles.monospace, styles.comment]}># Generate UI lib</Text>
-								<Text style={[styles.textXS, styles.monospace, styles.marginBottomMd]}>
-									nx g @nrwl/expo:lib ui
-								</Text>
-								<Text style={[styles.textXS, styles.monospace, styles.comment]}># Add a component</Text>
-								<Text style={[styles.textXS, styles.monospace]}>nx g \</Text>
-								<Text style={[styles.textXS, styles.monospace]}>@nrwl/expo:component \</Text>
-								<Text style={[styles.textXS, styles.monospace]}>button --project ui</Text>
-							</View>
-							<View style={styles.listItem}>
-								<Terminal width={24} height={24} stroke="#000000" />
-								<View style={styles.listItemTextContainer}>
-									<Text style={styles.textSm}>View interactive dependency graph</Text>
-								</View>
-							</View>
-							<View style={[styles.codeBlock, styles.marginBottomLg]}>
-								<Text style={[styles.textXS, styles.monospace]}>nx dep-graph</Text>
-							</View>
-							<View style={styles.listItem}>
-								<Terminal width={24} height={24} stroke="#000000" />
-								<View style={styles.listItemTextContainer}>
-									<Text style={styles.textSm}>Run affected commands</Text>
-								</View>
-							</View>
-							<View style={styles.codeBlock}>
-								<Text style={[styles.textXS, styles.monospace, styles.comment]}>
-									# See what's affected by changes
-								</Text>
-								<Text style={[styles.textXS, styles.monospace, styles.marginBottomMd]}>
-									nx affected:dep-graph
-								</Text>
-								<Text style={[styles.textXS, styles.monospace, styles.comment]}>
-									# run tests for current changes
-								</Text>
-								<Text style={[styles.textXS, styles.monospace, styles.marginBottomMd]}>
-									nx affected:text
-								</Text>
-								<Text style={[styles.textXS, styles.monospace, styles.comment]}>
-									# run e2e tests for current
-								</Text>
-								<Text style={[styles.textXS, styles.monospace, styles.comment]}># changes</Text>
-								<Text style={[styles.textXS, styles.monospace]}>nx affected:e2e</Text>
-							</View>
-						</View>
-						<View style={[styles.listItem, styles.love]}>
-							<Text style={styles.textSubtle}>Carefully crafted with </Text>
-							<Heart width={24} height={24} fill="rgba(252, 165, 165, 1)" />
-						</View>
-					</View>
-				</ScrollView>
-			</SafeAreaView>
-		</>
-	);
-};
-const styles = StyleSheet.create({
-	scrollView: {
-		backgroundColor: "#ffffff",
-	},
-	codeBlock: {
-		backgroundColor: "rgba(55, 65, 81, 1)",
-		marginVertical: 12,
-		padding: 12,
-		borderRadius: 4,
-	},
-	monospace: {
-		color: "#ffffff",
-		fontFamily: "Courier New",
-		marginVertical: 4,
-	},
-	comment: {
-		color: "#cccccc",
-	},
-	marginBottomSm: {
-		marginBottom: 6,
-	},
-	marginBottomMd: {
-		marginBottom: 18,
-	},
-	marginBottomLg: {
-		marginBottom: 24,
-	},
-	textLight: {
-		fontWeight: "300",
-	},
-	textBold: {
-		fontWeight: "500",
-	},
-	textCenter: {
-		textAlign: "center",
-	},
-	text2XS: {
-		fontSize: 12,
-	},
-	textXS: {
-		fontSize: 14,
-	},
-	textSm: {
-		fontSize: 16,
-	},
-	textMd: {
-		fontSize: 18,
-	},
-	textLg: {
-		fontSize: 24,
-	},
-	textXL: {
-		fontSize: 48,
-	},
-	textContainer: {
-		marginVertical: 12,
-	},
-	textSubtle: {
-		color: "#6b7280",
-	},
-	section: {
-		marginVertical: 24,
-		marginHorizontal: 12,
-	},
-	shadowBox: {
-		backgroundColor: "white",
-		borderRadius: 24,
-		shadowColor: "black",
-		shadowOpacity: 0.15,
-		shadowOffset: {
-			width: 1,
-			height: 4,
-		},
-		shadowRadius: 12,
-		padding: 24,
-		marginBottom: 24,
-	},
-	listItem: {
-		display: "flex",
-		flexDirection: "row",
-		alignItems: "center",
-	},
-	listItemTextContainer: {
-		marginLeft: 12,
-		flex: 1,
-	},
-	appTitleText: {
-		paddingTop: 12,
-		fontWeight: "500",
-	},
-	hero: {
-		borderRadius: 12,
-		backgroundColor: "#143055",
-		padding: 36,
-		marginBottom: 24,
-	},
-	heroTitle: {
-		flex: 1,
-		flexDirection: "row",
-	},
-	heroTitleText: {
-		color: "#ffffff",
-		marginLeft: 12,
-	},
-	heroText: {
-		color: "#ffffff",
-		marginVertical: 12,
-	},
-	whatsNextButton: {
-		backgroundColor: "#ffffff",
-		paddingVertical: 16,
-		borderRadius: 8,
-		width: "50%",
-		marginTop: 24,
-	},
-	learning: {
-		marginVertical: 12,
-	},
-	love: {
-		marginTop: 12,
-		justifyContent: "center",
-	},
+SplashScreen.preventAutoHideAsync().catch(() => {
+	/* reloading the app might trigger some race conditions, ignore them */
 });
 
-export default App;
+// Uncomment the 2 lines below to delete device's async stroage
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+// AsyncStorage.clear();
+
+Sentry.init({
+	dsn: Constants.manifest.extra.sentryDSN,
+	debug: __DEV__,
+	release: Constants.manifest.extra.OTA,
+});
+
+const IMAGES_LIST = [
+	barcodeImage,
+	blueBackgroundImage,
+	homeBackground,
+	planStep1,
+	planStep2,
+	defaultFarmWithoutFields,
+	needUpdateVersionStep1,
+	needUpdateVersionStep2,
+	noDefaultFarm,
+	noPlan,
+	drawerLogo,
+	cloudy,
+	rainy,
+	stormy,
+	snowy,
+	hveImg,
+	sunny,
+	curvedArrow,
+	injectionNozzle,
+	lowPressureNozzle,
+	pastilleNozzle,
+	standardNozzle,
+	backgroundLanding,
+	backgroundSignin,
+	spinner,
+	clara,
+];
+
+const App = (): JSX.Element => {
+	const [updateRequired, setUpdateRequired] = useState(false);
+
+	const { status, setHasConnection, tester } = useContext(AuthContext);
+	const { updateDefaultFarm, setAppState, appState } = useContext(UserContext);
+	const lastNotificationResponse = Notifications.useLastNotificationResponse();
+
+	useEffect(() => {
+		const checkUpdate = async (): Promise<void> => {
+			try {
+				const { isAvailable } = await Updates.checkForUpdateAsync();
+
+				if (isAvailable) setUpdateRequired(true);
+			} catch (e) {
+				setUpdateRequired(false);
+			}
+		};
+		if (appState === appStateEnum.ACTIVE) checkUpdate();
+	}, [appState]);
+
+	useEffect(() => {
+		if (
+			status === UserStatusEnum.LOGGED_IN &&
+			lastNotificationResponse &&
+			lastNotificationResponse.notification.request.content.data
+		) {
+			const { farmId, type, taskId, notificationId, deviceId, associatedComingTaskIds } = lastNotificationResponse
+				.notification.request.content.data as {
+				associatedComingTaskIds: number[];
+				type: notificationsEnum;
+				taskId: number;
+				notificationId: number;
+				farmId: number;
+				deviceId: number;
+			};
+			handleNotificationResponse({ farmId, type, taskId, deviceId, associatedComingTaskIds }).then(async () => {
+				if (farmId) updateDefaultFarm(farmId as number);
+				await markAsReadAndUpdateBadgeCount([notificationId]);
+			});
+		}
+	}, [lastNotificationResponse, updateDefaultFarm, status]);
+
+	useEffect(() => {
+		const subscription = AppState.addEventListener("change", (nextAppState) => setAppState(nextAppState));
+		const networkSnackBarUnsubscribe = NetInfo.addEventListener((state) => setHasConnection(state.isConnected));
+		return () => {
+			networkSnackBarUnsubscribe();
+			(subscription as unknown as HTMLElement).remove();
+		};
+	}, [setHasConnection, setAppState]);
+
+	useEffect(() => {
+		if (Constants.manifest.extra.appEnv !== ENV_ENUM.DEVELOPMENT && Platform.OS !== "android" && tester === false) {
+			LogRocket.init(Constants.manifest.extra.logRocketAppId);
+		} else {
+			LogRocket.shutdown();
+		}
+	}, [tester]);
+
+	return (
+		<AnimatedSplashScreen imagesList={IMAGES_LIST} image={splashImage}>
+			{updateRequired ? <NewUpdateScreen onError={() => setUpdateRequired(false)} /> : <AppNavigationContainer />}
+		</AnimatedSplashScreen>
+	);
+};
+
+export default (): JSX.Element => {
+	useEffect(() => {
+		initTranslations();
+	}, []);
+
+	return (
+		<SafeAreaProvider>
+			<GestureHandlerRootView style={styles.container}>
+				<Sentry.Native.ErrorBoundary
+					fallback={({ resetError }) => {
+						return (
+							<ErrorComponent
+								onClick={resetError}
+								icon={<HygoIcons.SadDrop colors={GRADIENTS.LAKE_GRAD} />}
+								title={i18next.t("screens.error.generic.title")}
+								description={i18next.t("screens.error.generic.description")}
+							/>
+						);
+					}}
+				>
+					<SnackbarProvider>
+						<AuthProvider>
+							<TourGuideProvider
+								preventOutsideInteraction
+								tooltipComponent={StepperOnboarding}
+								androidStatusBarVisible
+							>
+								<UserProvider>
+									<ModulationProvider>
+										<ModalsProvider>
+											<App />
+											<Modals />
+										</ModalsProvider>
+									</ModulationProvider>
+								</UserProvider>
+							</TourGuideProvider>
+						</AuthProvider>
+					</SnackbarProvider>
+				</Sentry.Native.ErrorBoundary>
+			</GestureHandlerRootView>
+		</SafeAreaProvider>
+	);
+};
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
+});

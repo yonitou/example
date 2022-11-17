@@ -1,12 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-dist
 tmp
 /out-tsc
-
-# dependencies
-node_modules
 
 # IDEs and editors
 /.idea
@@ -42,7 +38,8 @@ Thumbs.db
 .env*
 
 # keys
-hygo.jks
+google-services.json
+google-service-account-api-key.json
 
 # Expo
 node_modules/
@@ -50,6 +47,7 @@ node_modules/
 dist/
 npm-debug.*
 *.jks
+*.py
 *.p8
 *.p12
 *.key
