@@ -91,7 +91,6 @@
 		"@nrwl/react": "15.0.13",
 		"@nrwl/web": "15.1.1",
 		"@nrwl/workspace": "15.0.13",
-		"@react-native-community/eslint-config": "^3.0.2",
 		"@sentry/webpack-plugin": "^1.20.0",
 		"@svgr/webpack": "^6.3.1",
 		"@types/googlemaps": "^3.43.3",
