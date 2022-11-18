@@ -35,7 +35,7 @@
 				"nonInteractive": true,
 				"wait": true,
 				"clearCache": true,
-				"profile": "simulator"
+				"profile": "preview"
 			}
 		},
 		"build-list": {
