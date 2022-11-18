@@ -32,10 +32,11 @@
 			"executor": "@nrwl/expo:build",
 			"defaultConfiguration": "simulator",
 			"options": {
-				"platform": "all",
+				"platform": "android",
 				"nonInteractive": true,
 				"wait": true,
-				"clearCache": true
+				"clearCache": true,
+				"local": true
 			},
 			"configurations": {
 				"simulator": {
